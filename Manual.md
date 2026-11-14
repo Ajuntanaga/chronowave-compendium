@@ -3,12 +3,13 @@
 A plain-text guide to the Chronowave Dynamics Temporal Engine's own descriptions,
 extracted from the interactive HTML (`Chronowave_Temporal_Engine.html`, rev b90) so the
 framework's claims, caveats, and open questions can be read straight through instead of
-scattered across panels and sliders. The HTML itself is untouched — this is a companion
+scattered across panels and sliders. The extraction left the HTML untouched — this is a companion
 reference, not a replacement. Equation names are listed under each module as pointers back
 to the live page; the LaTeX itself renders only there.
 
-Generated 2026-10-10 from the Compendium fork (rev b90), then hand-patched in the
-2026-11-09/11 module pass (log items 11, 15, 20, 28). No extraction script is kept (the
+Generated 2026-10-10 from the Compendium fork (rev b90), then hand-patched: the
+open-rulings section on 2026-10-10 and, in the 2026-11-09/11 module pass, log items 11, 15,
+20, 28 (the log may not list every edit). No extraction script is kept (the
 session log describes the procedure only in prose), so do not regenerate this file
 blindly: that would drop the hand edits.
 

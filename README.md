@@ -1,25 +1,25 @@
 # Chronowave Dynamics — Temporal Engine (compendium)
 
-**Private repository.** The working copy of the compendium page, its manual, the log of the latest edit pass, and standalone copies of two of its modules.
+The author's working copy of the compendium page, its manual, the working log (provenance, earlier passes and the latest edit pass), and standalone copies of two of its modules.
 
-The compendium is a single-file interactive page of 17 modules, from "The dimensional ladder" (I) to "The compendium" (XVII). Module N is the Nth section on the page.
+The compendium is a single-file interactive page of 17 modules, from "The dimensional ladder" (I) to "The compendium" (XVII). Module N is the Nth section on the page. The page describes itself as "Interactive engine for the Chronowave Dynamics temporal framework: cubic time dimensions, geodesic time mesh, orthogonal-time analyzer, the Scramble Zone, cubic GNSS dilation, and dark energy as α₃/t³." It is the author's own framework and still in progress: Module XVII carries the page's own verdicts and open rulings (pending decisions for the author, shown as cards) plus a self-audit panel for its triad-delineation engine, and the log records, for example, that Module VI's cubic exponent is excluded as a literal clock law by an internal measurement (Module XI) and by the paper that cross-checked it (log entry of 2026-10-09).
 
-**Build:** `rev b91 · module pass V–XVI`, shown by the build stamp: a small label fixed at the bottom-right of the window. It sits inside Module VIII's (Hydrogen's) reveal wrapper, so with scripts running and the default motion setting it only appears once that module has scrolled into view (observed in headless Chromium). With reduced motion, or with scripts off, the page's CSS leaves that wrapper visible and the stamp shows from load (read from the CSS, not run). Phone widths were not checked.
+**Build:** `rev b91 · module pass V–XVI` (b91 is the author's build counter), shown by the build stamp: a small label fixed at the bottom-right of the window. It sits inside Module VIII's (Hydrogen's) reveal wrapper, so with scripts running and the default motion setting it only appears once that module has scrolled into view (observed in headless Chromium) and then stays (read from the script). With reduced motion, or with scripts off, the page's CSS leaves that wrapper visible and the stamp shows from load (read from the CSS, not run). Phone widths were not checked.
 
 ## Contents
 
 | File | What it is |
 |---|---|
 | [`Chronowave_Temporal_Engine.html`](Chronowave_Temporal_Engine.html) | The compendium: one page, 17 modules. Open it in a browser. |
-| [`Manual.md`](Manual.md) | A plain-text manual extracted from the page's prose: one section per module (I–XVII) and an appendix of the compendium's own verdicts. **Behind the page:** generated 2026-10-10 from rev b90, not regenerated for b91 (hand-patched during the pass: log items 11, 15, 20, 28). |
-| [`CLAUDE_SESSION_LOG.md`](CLAUDE_SESSION_LOG.md) | Working log: provenance, canonical decisions, the numbered items of the 2026-11-09/11 module pass (1–32 plus 29a) with the checks it records (item 30 records re-running the changed draw routines with a timer shim in place of `requestAnimationFrame`; items 13 and 20 say what was not seen running), what was left for the author, and a resume point. Read it before editing the page. |
+| [`Manual.md`](Manual.md) | A plain-text manual extracted from the page's prose: one section per module (I–XVII) and an appendix of the compendium's own verdicts. **Behind the page:** generated 2026-10-10 from rev b90, not regenerated for b91 (hand-patched: the open-rulings section on 2026-10-10 and, in the pass, log items 11, 15, 20, 28; the log may not list every edit). |
+| [`CLAUDE_SESSION_LOG.md`](CLAUDE_SESSION_LOG.md) | Working log: provenance, canonical decisions, the numbered items of the 2026-11-09/11 module pass (1–32 plus 29a and 29b) with the checks it records (item 30 records re-running the changed draw routines with a timer shim in place of `requestAnimationFrame`, and checking XI's fall engine, XII's draw and `lo.keepAlive` in node; items 13 and 20 say what was not seen running), what was left for the author, and a resume point. Read it before editing the page. |
 | [`Module_VI_Cubic_Time_Dilation.html`](Module_VI_Cubic_Time_Dilation.html), [`Module_VI_Manual.md`](Module_VI_Manual.md) | Standalone Module VI and its manual. |
 | [`Module_VIII_Temporal_Hydrogen.html`](Module_VIII_Temporal_Hydrogen.html), [`Module_VIII_Manual.md`](Module_VIII_Manual.md) | Standalone Module VIII and its manual. |
-| [`.gitignore`](.gitignore) | Keeps working backups (`*.bak.html`, `*.bak`) and OS or editor debris (`.DS_Store`, `Thumbs.db`, `node_modules/`, `__pycache__/`, swap files, `.vscode/`, `.idea/`, `.claude/settings.local.json`) out of the tree. |
+| [`.gitignore`](.gitignore) | Keeps working backups (`*.bak.html`, `*.bak`) and OS or editor debris (`.DS_Store`, `Thumbs.db`, `node_modules/`, `__pycache__/`, `*.pyc`, swap files, `.vscode/`, `.idea/`, `.claude/settings.local.json`) out of the tree. |
 
 ## The 17 modules
 
-"In the b91 pass" is the scope recorded in the log. It is not a claim that the other modules are byte-for-byte unchanged. The stamp's "V–XVI" is a range that also spans Modules VII, XIII and XV, which the pass did not list. The pass also changed page-wide CSS (log items 7 and 9: slider layout and the tier-note link colour), so modules whose section markup is unchanged can still look different; the log names III, IV and VII for the sliders.
+"In the b91 pass" is the scope recorded in the log. It is not a claim that the other modules are byte-for-byte unchanged. The stamp's "V–XVI" is a range that also spans Modules VII, XIII and XV, which the pass did not list. The pass also changed page-wide CSS (log items 7 and 9: slider layout and the tier-note link colour; a symbol-case rule for `.sym` and panel-head readouts is also in the page diff, and the log records it only for the standalone Modules VI and VIII, item 29), so modules whose section markup is unchanged can still look different; the log names III, IV and VII for the sliders.
 
 | # | Nav label | Module | In the b91 pass |
 |---|---|---|---|
@@ -52,31 +52,34 @@ Modules VI and VIII also have their own public repositories. The copies here are
 
 ## Running it
 
-Open `Chronowave_Temporal_Engine.html` in a current browser. There is no build step and nothing to install. Opened from a `file://` path (a double-click) the page runs, but Module VI's live almanac fetch is blocked; see "The one data fetch" below.
+Download or clone the repository, then open `Chronowave_Temporal_Engine.html` from disk in a current browser (GitHub only shows its source). There is no build step and nothing to install. Opened from a `file://` path (a double-click) the page runs, but Module VI's live almanac fetch is blocked; see "The one data fetch" below.
 
-- **Network.** Math (KaTeX 0.16.9) and fonts (STIX Two Text, Space Grotesk, IBM Plex Mono) load from cdnjs and Google Fonts, so equations and typography need a connection.
+- **Network.** Math (KaTeX 0.16.9) and fonts (STIX Two Text, Space Grotesk, IBM Plex Mono) load from cdnjs and Google Fonts, so equations and typography need a connection; offline, the page shows equations as raw TeX source and falls back to system fonts (read from the code, not run).
 - **The one data fetch.** Module VI's "Fetch live almanac" button requests a GNSS almanac from CelesTrak when you click it; nothing polls. One click can make two requests to `celestrak.org`: JSON first, then a TLE fallback. The page itself blocks the request only when opened from a `file://` path or when the browser reports no network (it then says so and keeps the snapshot); any other failure, CORS included, is reported after the attempt. A successful live fetch over http has not been tested here. Until an almanac is loaded (fetched, pasted or read from a file), the page uses an embedded satellite snapshot (epoch 2026-08-11T19:55:09Z) and labels the phases ASSUMED. Once a loaded almanac matches satellites, the source line reads LIVE and the matched satellites' phases are labelled MEASURED, however it was loaded. "Paste almanac" works offline.
-- **Storage.** The page stores nothing in the browser (no cookies, localStorage or sessionStorage). Control state can be shared through URL permalinks of the form `#s=k=v;…`. The address fragment follows the controls automatically (`history.replaceState` after a 0.6 s pause; read from the code, not run), so a copied address carries the current state.
+- **Storage.** The page stores nothing in the browser (no cookies, localStorage or sessionStorage). Control state can be shared through URL permalinks of the form `#s=k=v;…`. The address fragment is refreshed by a fixed set of events, not by every control (`history.replaceState`, 0.6 s after an input event or a click on a segmented control, chip or dimension item; other buttons only show up at the next such event, and the palette's Copy state permalink writes at once; read from the code, not run). The key list is `writeHash` in the page: it has controls from Modules I–V and IX–XV and one slider of VI, and nothing from VII, VIII, XVI or XVII, so a copied address does not carry their state.
 
 ## Status and caveats
 
-- **The b91 module pass is closed.** Its numbered items are in the log.
-- **No independent check yet.** An independent regression review of the pass was started and paused; no reviewer has reported. The checks recorded in the log were made in the sessions that made the edits.
-- **`Manual.md` is hand-maintained and behind the page.** It is the rev-b90 extraction of 2026-10-10 plus hand edits from the b91 pass (log items 11, 15, 20, 28). The page's condensed notes link to it for their full text, and no extraction script is kept in this repository, so do not regenerate it from the HTML: that would drop those edits.
-- **Open items are the author's call, not tasks.** The log's "Left for the author" paragraph lists findings that were found and not changed; the log marks them as the author's call, not a to-do. The open rulings are cards in Module XVII (`#compendium`). The log's Resume point step 2 ("Address the four open items above in this fork") predates three of those cards; the four items it means are the fork-point list of standing open items, all four of them among the six cards.
-- **The log predates this repository.** Where it says there is no git repository, that is out of date.
-- **No license, tags or releases.** A license is the author's decision. For the two public standalone repositories, Zenodo archives a new version on each GitHub release, so cut releases there only on purpose.
+- **The b91 module pass is closed (log Resume point, step 5).** Its numbered items are in the log; the next point says what has not been checked.
+- **No independent regression check yet.** An independent regression review of the pass was started and paused (log item 29b); no reviewer has reported. The checks recorded in the log were made in the sessions that made the edits.
+- **AI-assisted.** The b91 pass and the log were made in Claude Code sessions at the author's direction; where the log says "the user", it means the author.
+- **`Manual.md` is hand-maintained and behind the page.** It is the rev-b90 extraction of 2026-10-10 plus hand edits: the open-rulings section on 2026-10-10 and, in the b91 pass, log items 11, 15, 20, 28 (the log may not list every edit). The page's condensed notes link to it for their full text, and no extraction script is kept in this repository, so do not regenerate it from the HTML: that would drop those edits.
+- **Open items are the author's call, not tasks.** The log's "Left for the author" paragraph lists findings that were found and not changed; the log marks them as the author's call, not a to-do. The open rulings are cards in Module XVII (`#compendium`). The log's Resume point step 2 ("Address the four open items above in this fork") predates three of those cards; the four items it means are the fork-point list of standing open items, all four of them among the six cards. Step 3 ("Update this log's revision trail…") refers to a trail the log has no section for.
+- **The log mostly predates this repository.** Its statements that there is no git repository now hold only for the parent `Chronowave Dynamics/` folder, not for `Compendium/`, and its "Modules I through XV-ish" is out of date (the page has 17). The log notes the first beside the lines that say it, and item 29b records the first push.
+- **No license, tags or releases.** Without a license all rights are reserved by default, beyond viewing and forking on GitHub; a license is the author's decision. For the two public standalone repositories, Zenodo archives a new version on each GitHub release, so cut releases there only on purpose.
 
 ## History
 
 This tree was forked on 2026-10-09 from the top-level copy of the page in the parent folder (rev b90); the log's Provenance section has the details. That fork-point page (the top-level copy, sha256 `756d0abd…`, 1,007,991 bytes) is not in this history. `e536de6` below is the page as it stood later (the log dates it 2026-10-17), and it carries the same "rev b90" stamp because the stamp was not bumped for the edits in between, so the stamp alone does not identify a version.
 
-The history opens with a restore point. `e536de6` is the page as it stood before the pass (`rev b90 · paper audit, three authors`, sha256 `3a7e6f60…5944`), committed under the live file name. The next commit carries the pass (rev b91) and the rest of the tree as it stood then, so the page's diff between the two shows the pass's changes to the page. It is not the whole pass: the hand patches to `Manual.md`, the standalone copies and a tool-setting change are recorded in the log, not in that diff:
+The history opens with a restore point. `e536de6` is the page as it stood before the pass (`rev b90 · paper audit, three authors`, sha256 `3a7e6f60…5944`), committed under the live file name. The next commit carries the pass (rev b91) and the rest of the tree as it stood then, so the page's diff between the two shows the pass's changes to the page (the first commit's message calls that diff "the whole pass", which overstates it). It is not the whole pass: the hand patches to `Manual.md`, the standalone copies and a tool-setting change are recorded in the log, not in that diff:
 
 ```bash
 git log --oneline --reverse
-git diff e536de6 <second-commit> -- Chronowave_Temporal_Engine.html
+git diff e536de6 251855e -- Chronowave_Temporal_Engine.html
 ```
+
+A third commit records the first push: log item 29b and the notes the log now carries beside its "no git" statements, corrections to this README after the pre-push review, and one corrected line in the Manual's header.
 
 ## Not in this repository
 

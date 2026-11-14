@@ -21,6 +21,9 @@ project folder for local work going forward, separate from the Claude.ai web ses
 - No git repository exists at `Chronowave Dynamics/` or above it — there is no version control
   safety net here. Treat file edits in this folder as the only copy of this fork's state; the
   parent folder's top-level `.html` is left untouched as a separate, unforked reference copy.
+  Update, 2026-11-14: `Compendium/`, which sits below `Chronowave Dynamics/`, is now a git repository (item
+  29b), so once it is pushed the only-copy advice no longer applies to it; the statement above still holds for
+  `Chronowave Dynamics/` itself.
 
 ## Project identity
 
@@ -268,7 +271,9 @@ extracts on 2026-10-17 (prose uses the page width; header equations show live nu
 
 **Safety net.** No git here, so the pre-pass file is kept beside the live one:
 `Chronowave_Temporal_Engine.pre-2026-11-09.bak.html` (SHA-256 `3a7e6f60…`, byte-identical to the
-compendium as it stood on 2026-10-17 07:34). Delete it once this pass is accepted.
+compendium as it stood on 2026-10-17 07:34). Delete it once this pass is accepted. Update, 2026-11-14:
+commit `e536de6` of the git repository now holds the same bytes; the `.bak.html` is git-ignored and was
+not pushed.
 
 **Not recorded before this entry:** the 2026-10-17 work (standalone `Module_VI_…html`,
 `Module_VIII_…html`, their manuals, the GNSS v2 paper) was done from another session and never
@@ -432,6 +437,36 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     files and to the review copies in `ro/`; pre-push copies of the four files sit in
     `~/.cache/chronowave-review/standalone-repo-backups/2026-11-11/`. The independent review had not run
     when this was pushed, so these two pages carry the author's own checks only.
+29b. **Public repository and first push (2026-11-14, on "update and put each module to github").** `Compendium/`
+    (below `Chronowave Dynamics/`, which still has no repository) is now a git repository, pushed to one public
+    GitHub repository, `Ajuntanaga/chronowave-compendium`, in three commits: `e536de6` is the page as it stood
+    before the pass (rev b90, one file, the same bytes as the git-ignored
+    `Chronowave_Temporal_Engine.pre-2026-11-09.bak.html`) and is the restore point; `251855e` is the pass (rev
+    b91) plus the manual, this log, the two standalone copies, the README and .gitignore; the commit that adds
+    this entry is the third. It is public at the author's choice, so that GitHub Actions, which the author uses
+    to offload processing, is not held back by private-repository quotas. No license, tag, release or workflow:
+    a license is the author's decision, and a release on the public standalone repositories would make Zenodo
+    mint new DOIs. A repository for each of the 15 modules without one is planned at the author's request and
+    does not exist yet; Modules VI and VIII keep their own public repositories. Before the push, five read-only
+    reviewers (secrets and personal data, links and prose, README accuracy, hygiene, a cold read) checked the
+    tree. A spend limit interrupted the first run and two of the five were re-run; none reported a blocker.
+    Their findings were fixed in two amends of the then-unpushed second commit, which took a link to the
+    original web conversation out of this log, corrected the count of modules without a standalone repository to
+    15 and reworded README sentences and one commit-message sentence that said more than the code or the checks
+    support. A final read-only gate over `251855e` (four reviewers, each non-note finding re-checked by a
+    skeptic) found no blocker and two should-fix wording findings: the README sentence on what the address
+    fragment covers, now corrected, and the first commit's message calling the page diff "the whole pass", which
+    stays as committed and which the README now says overstates it. A second check of the first version of this
+    commit (three reviewers, same method) found no blocker and six more should-fix wording findings, which are
+    corrected here. A third check of that corrected version (one reviewer) found no should-fix finding and ten
+    notes, most of which are applied in this final wording. Left to the author: the build stamp shows only once
+    Module VIII's wrapper is revealed (scripts on, default motion); the page was not changed for this, and
+    moving the stamp is the author's call. The independent regression review was started and then paused; no
+    reviewer has reported, so the pass has had no independent regression check, and the pre-push reviews above
+    read the files without running the page. Reader notes: Resume point step 2's "four open items" are all among
+    the six "Open rulings" cards that Module XVII now shows (three of the six came later), and those cards are
+    the author's rulings, not tasks; step 3 mentions a "revision trail" but this log has no such heading; paths
+    beginning with `~/`, `../` or `ro/` are on the author's machine.
 30. **How this was checked.** The preview pane stops delivering animation frames when its window is
     backgrounded (timers keep running). The page was re-run with `requestAnimationFrame` replaced by a timer
     shim (written over the document from the browser console; nothing in the file) so every changed draw
@@ -465,10 +500,14 @@ beside it (author, 2026-11-11). Nothing further is pending there.
 
 1. Open `Chronowave_Temporal_Engine.html` in this folder (b90 at fork time, b91 after the 2026-11-09/11
    module pass) and work here going forward.
-2. Address the four open items above in this fork.
+2. Address the four open items above in this fork. Note, 2026-11-14: all four are among the six "Open
+   rulings" cards that Module XVII now shows (three of the six came later); the cards are the author's
+   rulings, not tasks.
 3. Update this log's revision trail with each new build stamp as work proceeds.
 4. The combined paper (44 pp., verified above) is current and can be cited as-is for any compendium
    cross-checks; no further paper work is outstanding.
 5. The 2026-11-09/11 module pass (items 1–32 above) is closed. What it left open is the "Left for the
    author" paragraph, which is the author's call and not a to-do. Standalone VI and VIII were pushed to
-   their repositories on 2026-11-11 (item 29a); the other 15 modules have no standalone repository.
+   their repositories on 2026-11-11 (item 29a); the other 15 modules have no standalone repository. The
+   tracked files of the folder (all but the git-ignored `.bak.html`) were pushed to one public repository on
+   2026-11-14 (item 29b).
