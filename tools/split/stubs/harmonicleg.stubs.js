@@ -16,16 +16,6 @@ const azSets = () => {
   }
   return { MI: MI9, AS: AS9.sort((a9, b9) => a9 - b9) };
 };
-/* STUB of hlHome (Module XV, cross-module statement in the page) for the standalone extract: the home key that returns every control of this module to its base state; copied from the page, it only touches this module's own state and uses azSets above for az1's home position. */
-function hlHome(){
-  hl.th = 0; hl.dir = 1; hl.dirA1 = 1; hl.dirA2 = 1; hl.dirTg = 1; hl.tg = 0; hl.stepIdx = 0; hl.azFree = false;
-  hl.ph = 0;
-  hl.el.pt.value = ((azSets().MI[0] || 1)*Math.PI/6).toFixed(3);
-  hl.el.pt2.value = "0";
-  hl.el.pt.dispatchEvent(new Event("input"));
-  hl.azFree = false;
-  hl.upd();
-}
 /* STUB of hl.soundRung (Module XV, assigned by a page statement that sounds the rung through the lattice voice, Module IV) for the standalone extract: the step buttons call hl.soundRung() after every move. In the page it returns at once unless hl.sync is on, and hl.sync is only switched on by the lattice when a scale is selected there, so here it is a no-op that keeps the same guard. It is attached after the module has created hl (the stubs sit above that declaration). */
 queueMicrotask(() => {
   hl.soundRung = function(){

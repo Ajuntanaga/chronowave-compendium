@@ -17,7 +17,7 @@ const FRAME = {
     document.dispatchEvent(new CustomEvent("framechange"));
   }
 };
-/* STUB of lat (Module IV) for the standalone extract: only the three members the "from lattice" button uses. The real scale, root and tuning are fixed at their start-up values: scale {0,2,3,4,6,8,10} semitones (the identity scale), root 261.63 Hz, equal temperament. freq() keeps the real equal-temperament formula; actives() returns the fixed scale; root() returns the fixed root. */
+/* STUB of lat (Module IV) for the standalone extract: only the three members the "Lattice" chip uses. The real scale, root and tuning are fixed at their start-up values: scale {0,2,3,4,6,8,10} semitones (the identity scale), root 261.63 Hz, equal temperament. freq() keeps the real equal-temperament formula; actives() returns the fixed scale; root() returns the fixed root. */
 const lat = {
   mask: new Set([0, 2, 3, 4, 6, 8, 10]),
   rootEl: { value: "261.63", addEventListener(){} },
@@ -25,7 +25,7 @@ const lat = {
   root(){ return +this.rootEl.value; },
   actives(){ return [...this.mask].sort((a, b) => a - b); }
 };
-/* STUB of lo (Module XII) for the standalone extract: the attractor's x coordinate and its keep-alive step, fixed at x = 0, so "the attractor drives the phase" adds nothing here. */
+/* STUB of lo (Module XII) for the standalone extract: the attractor's x coordinate and its keep-alive step, fixed at x = 0, so the "Lorenz drive" button only slows the phase animation to a quarter here (there is no attractor term). */
 const lo = { x: 0, keepAlive(){} };
-/* STUB of sz (Module V) for the standalone extract: the scramble zone's damping factor D, fixed at 1 (no damping), so "the scramble damps the field" changes nothing here. */
+/* STUB of sz (Module V) for the standalone extract: the scramble zone's damping factor D, fixed at 1 (no damping), so the "Scramble damping" button changes nothing here. */
 const sz = { params(){ return { D: 1 }; } };

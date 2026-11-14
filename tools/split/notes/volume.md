@@ -1,4 +1,4 @@
 - The rotatable cube, the three frequency sliders, the phase and threshold sliders, the field and view buttons and the live "volume this cube stands for" readout (V_T, the aspect ratio and the eq (6) normaliser A) are this module's own and work here.
-- The "from lattice" button reads three ratios from the lattice of Module IV; here the lattice is fixed at its start-up state (the identity scale, root 261.63 Hz, equal temperament), so it always fills in 1.122, 1.189 and 1.260 (read from the code).
-- "The attractor drives the phase" and "the scramble damps the field" need Modules XII and V; here the attractor's x is fixed at 0 and the damping at 1, so those two buttons change nothing visible.
+- The "Lattice" chip sets the three frequency ratios from the lattice of Module IV; here the lattice is fixed at its start-up state (the identity scale, root 261.63 Hz, equal temperament), so it always fills in 1.122, 1.189 and 1.260 (read from the code).
+- The "Lorenz drive" chip needs Module XII: here the attractor's x is fixed at 0, so switching it on only slows the phase animation to a quarter, with no attractor term. The "Scramble damping" chip needs Module V: the damping factor is fixed at 1, so it changes nothing visible.
 - The frame choice made with the dimension buttons of Module I is not available, so the frame note beside the volume readout never appears.

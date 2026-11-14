@@ -9,7 +9,7 @@ const M3 = {
   a4: 440,
   f(semi){ return this.a4 * Math.pow(2, -9/12) * Math.pow(2, semi/12); }
 };
-/* STUB of tfe.terms (Module X) for the standalone extract: the "TFE couple" button adds 3 x tfe.terms().res to rho. The page keeps the field-equation solver of Module X, which is not present, so terms() reports a field that is exactly balanced (res = 0) and the coupling adds nothing to rho. It is attached after the module has declared the small tfe object (the stubs sit above that declaration). */
+/* STUB of tfe.terms (Module X) for the standalone extract: the "TFE couple" button adds 3 x tfe.terms().res to rho. The page keeps only the small tfe object; the field-equation solver of Module X is not present, so terms() reports a field that is exactly balanced (res = 0) and the coupling adds nothing to rho. It is attached after the module has declared the small tfe object (the stubs sit above that declaration). */
 queueMicrotask(() => {
   tfe.terms = function(){ this.res = 0; return { res: 0 }; };
 });

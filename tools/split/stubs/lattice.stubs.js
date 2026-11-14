@@ -13,7 +13,7 @@ const mesh = {
   }
 };
 
-/* STUB of hl (Module XV) for the standalone extract: provides the harmonic-leg state that the lattice writes to (th, sync, azFree, el.pt) with the real initial values (th = 0, sync = false, azFree = false, pt slider = 0); upd and soundRung are no-ops, so a lattice collapse or a "send to leg" click updates this stub's angle but moves no leg and plays no rung sound. */
+/* STUB of hl (Module XV) for the standalone extract: provides the harmonic-leg state that the lattice writes to (th, sync, azFree, el.pt) with the real initial values (th = 0, sync = false, azFree = false, pt slider = 0); upd and soundRung are no-ops, so a lattice collapse or a "Walk leg" click updates this stub's angle but moves no leg and plays no rung sound. */
 const hl = {
   th: 0, ph: 0, sync: false, azFree: false,
   el: {

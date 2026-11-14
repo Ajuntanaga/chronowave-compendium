@@ -1,0 +1,4 @@
+- The page's own wording assumes the full compendium: its lede says everything above is compiled live from the compendium, but only this module is on the page.
+- The "Run the 36-header audit" button needs the delineation engine of Module XIII (or the full compendium page); in this extract it only prints "delineation engine unreachable" (read from the code).
+- The six constellation cards ("Jump to the embodying module") look clickable but go nowhere here, because the modules they point to are not on this page (read from the code); the module repositories are listed in the README of the compendium repository.
+- The build ledger on the page is a short list of build labels (b68 to b83), not the history up to b91 (read from the page).
