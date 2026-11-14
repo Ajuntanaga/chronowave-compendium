@@ -1,0 +1,3 @@
+- Major-third tuning, the note-as-two-clocks layers, the string map and the triad delineation are this module's own and work here; the string map is drawn only once it scrolls into view.
+- The scale is fixed at the start-up scale of the lattice of Module IV (the identity scale: semitones 0, 2, 3, 4, 6, 8, 10) and the root at 261.63 Hz (C); the scale rings and the MI/AS markers on the string map always use that default. Whether the behaviour matches the full page for other scales and roots was read from the code, not run.
+- The per-note eigenstate bins that this module's code builds belong to the lattice panel of Module IV; they are built but hidden here, and sounding a note from them does nothing.

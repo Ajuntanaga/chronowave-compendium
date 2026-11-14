@@ -1,0 +1,4 @@
+- The leg, its fine angle, the step and fine modes, the az1 and az2 rims, Ground flip, the voice and the chart (double-click the centre marker for the home key) are this module's own and work here; the listening and visual behaviour was read from the code, not judged by ear.
+- The lattice of Module IV is replaced by a fixed copy of its start-up state: the identity scale {0, 2, 3, 4, 6, 8, 10} and the root at 261.63 Hz (middle C).
+- So the active scale cannot be changed (az1 and az2 always use the interval sets of the identity scale; in the compendium they follow the scale picked on the lattice), and the root pitch stays at middle C (no lattice root slider, no just-intonation tuning).
+- Stepping the leg does not sound through the lattice, collapsing a state on the lattice does not move the leg, and Ground flip does not flash the lattice's ground states, because there is no lattice here to link to.

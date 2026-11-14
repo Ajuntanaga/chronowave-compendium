@@ -1,0 +1,4 @@
+- The sigma, rho and beta sliders, the Lyapunov and twin-separation readouts, the time fold, the Drive control and the 3-D canvas are this module's own and work here.
+- The number of wings comes from the scale selected on the lattice of Module IV; here the scale is fixed at its start-up one (seven selected notes), so there are always seven wings.
+- The drive is always built from a stack interval of 4 semitones at A4 = 440 Hz (the values Module XIII starts with), and the readout next to the Drive slider is fixed to that.
+- "TFE couple" can be switched on, but the field-equation solver it reads from (Module X) is not here, so it adds nothing to rho (read from the code; the button was only clicked in the test).

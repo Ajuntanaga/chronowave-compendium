@@ -15,3 +15,6 @@ Thumbs.db
 node_modules/
 __pycache__/
 *.pyc
+
+# Output of tools/split (module repositories built locally)
+split-out/

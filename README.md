@@ -15,7 +15,8 @@ The compendium is a single-file interactive page of 17 modules, from "The dimens
 | [`CLAUDE_SESSION_LOG.md`](CLAUDE_SESSION_LOG.md) | Working log: provenance, canonical decisions, the numbered items of the 2026-11-09/11 module pass (1–32 plus 29a and 29b) with the checks it records (item 30 records re-running the changed draw routines with a timer shim in place of `requestAnimationFrame`, and checking XI's fall engine, XII's draw and `lo.keepAlive` in node; items 13 and 20 say what was not seen running), what was left for the author, and a resume point. Read it before editing the page. |
 | [`Module_VI_Cubic_Time_Dilation.html`](Module_VI_Cubic_Time_Dilation.html), [`Module_VI_Manual.md`](Module_VI_Manual.md) | Standalone Module VI and its manual. |
 | [`Module_VIII_Temporal_Hydrogen.html`](Module_VIII_Temporal_Hydrogen.html), [`Module_VIII_Manual.md`](Module_VIII_Manual.md) | Standalone Module VIII and its manual. |
-| [`.gitignore`](.gitignore) | Keeps working backups (`*.bak.html`, `*.bak`) and OS or editor debris (`.DS_Store`, `Thumbs.db`, `node_modules/`, `__pycache__/`, `*.pyc`, swap files, `.vscode/`, `.idea/`, `.claude/settings.local.json`) out of the tree. |
+| [`.gitignore`](.gitignore) | Keeps working backups (`*.bak.html`, `*.bak`) and OS or editor debris (`.DS_Store`, `Thumbs.db`, `node_modules/`, `__pycache__/`, `*.pyc`, swap files, `.vscode/`, `.idea/`, `.claude/settings.local.json`) and the output folder of `tools/split` (`split-out/`) out of the tree. |
+| [`tools/split/`](tools/split/) | Scripts that cut the page into one standalone page per module and test each page in headless Chromium; its README says how to run them and what they do not do. |
 
 ## The 17 modules
 
