@@ -100,7 +100,7 @@ def main(argv):
             say("MISSING STUBS", key, info["missingStubs"], info.get("missingMembers")); continue
         res = {"pass": None, "canvases": 0, "interactions": 0, "blankCanvases": [], "problems": []}
         if do_test:
-            t = run([T + "/split_test_locked.sh", html_path, "--json"], timeout=900)
+            t = run(["bash", T + "/split_test_locked.sh", html_path, "--json"], timeout=900)
             try:
                 res = json.loads(t.stdout.strip().splitlines()[-1])
             except Exception:
