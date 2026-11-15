@@ -12,7 +12,7 @@ The compendium is a single-file interactive page of 17 modules, from "The dimens
 |---|---|
 | [`Chronowave_Temporal_Engine.html`](Chronowave_Temporal_Engine.html) | The compendium: one page, 17 modules. Open it in a browser. |
 | [`Manual.md`](Manual.md) | A plain-text manual extracted from the page's prose: one section per module (I–XVII) and an appendix of the compendium's own verdicts. **Behind the page:** generated 2026-10-10 from rev b90, not regenerated for b91 (hand-patched: the open-rulings section on 2026-10-10 and, in the pass, log items 11, 15, 20, 28; the log may not list every edit). |
-| [`CLAUDE_SESSION_LOG.md`](CLAUDE_SESSION_LOG.md) | Working log: provenance, canonical decisions, the numbered items of the 2026-11-09/11 module pass (1–32 plus 29a and 29b) with the checks it records (item 30 records re-running the changed draw routines with a timer shim in place of `requestAnimationFrame`, and checking XI's fall engine, XII's draw and `lo.keepAlive` in node; items 13 and 20 say what was not seen running), what was left for the author, and a resume point. Read it before editing the page. |
+| [`CLAUDE_SESSION_LOG.md`](CLAUDE_SESSION_LOG.md) | Working log: provenance, canonical decisions, the numbered items of the 2026-11-09/11 module pass (1–32 plus 29a, 29b and 29c) with the checks it records (item 30 records re-running the changed draw routines with a timer shim in place of `requestAnimationFrame`, and checking XI's fall engine, XII's draw and `lo.keepAlive` in node; items 13 and 20 say what was not seen running), what was left for the author, and a resume point. Read it before editing the page. |
 | [`Module_VI_Cubic_Time_Dilation.html`](Module_VI_Cubic_Time_Dilation.html), [`Module_VI_Manual.md`](Module_VI_Manual.md) | Standalone Module VI and its manual. |
 | [`Module_VIII_Temporal_Hydrogen.html`](Module_VIII_Temporal_Hydrogen.html), [`Module_VIII_Manual.md`](Module_VIII_Manual.md) | Standalone Module VIII and its manual. |
 | [`.gitignore`](.gitignore) | Keeps working backups (`*.bak.html`, `*.bak`) and OS or editor debris (`.DS_Store`, `Thumbs.db`, `node_modules/`, `__pycache__/`, `*.pyc`, swap files, `.vscode/`, `.idea/`, `.claude/settings.local.json`) and the output folder of `tools/split` (`split-out/`) out of the tree. |
@@ -22,29 +22,29 @@ The compendium is a single-file interactive page of 17 modules, from "The dimens
 
 "In the b91 pass" is the scope recorded in the log. It is not a claim that the other modules are byte-for-byte unchanged. The stamp's "V–XVI" is a range that also spans Modules VII, XIII and XV, which the pass did not list. The pass also changed page-wide CSS (log items 7 and 9: slider layout and the tier-note link colour; a symbol-case rule for `.sym` and panel-head readouts is also in the page diff, and the log records it only for the standalone Modules VI and VIII, item 29), so modules whose section markup is unchanged can still look different; the log names III, IV and VII for the sliders.
 
-| # | Nav label | Module | In the b91 pass |
-|---|---|---|---|
-| I | Dimensions | The dimensional ladder | |
-| II | Time Mesh | Geodesic time mesh | |
-| III | Analyzer | Orthogonal-time analyzer | |
-| IV | Lattice | The harmonic lattice | |
-| V | Scramble Zone | The scramble zone | yes |
-| VI | GNSS | Cubic time dilation | yes |
-| VII | Spin | Spin in temporal dimensions | |
-| VIII | Hydrogen | Temporal hydrogen → two-clock periodic table | yes |
-| IX | Cosmos | Dark energy & the cold sky | yes |
-| X | Field Eq. | The temporal field equation | yes |
-| XI | Horizons | Temporal horizons | yes |
-| XII | Attractor | The attractor | yes |
-| XIII | M3 Source | The M3 source lattice | |
-| XIV | t³ Volume | The temporal volume | yes |
-| XV | Harmonic Leg | The harmonic leg | |
-| XVI | Observatory | The observatory | yes |
-| XVII | Compendium | The compendium | |
+| # | Nav label | Module | In the b91 pass | Standalone repository |
+|---|---|---|---|---|
+| I | Dimensions | The dimensional ladder | | [`chronowave-dimensional-ladder`](https://github.com/Ajuntanaga/chronowave-dimensional-ladder) |
+| II | Time Mesh | Geodesic time mesh | | [`chronowave-geodesic-time-mesh`](https://github.com/Ajuntanaga/chronowave-geodesic-time-mesh) |
+| III | Analyzer | Orthogonal-time analyzer | | [`chronowave-orthogonal-time-analyzer`](https://github.com/Ajuntanaga/chronowave-orthogonal-time-analyzer) |
+| IV | Lattice | The harmonic lattice | | [`chronowave-harmonic-lattice`](https://github.com/Ajuntanaga/chronowave-harmonic-lattice) |
+| V | Scramble Zone | The scramble zone | yes | [`chronowave-scramble-zone`](https://github.com/Ajuntanaga/chronowave-scramble-zone) |
+| VI | GNSS | Cubic time dilation | yes | [`cubic-time-dilation-model-for-enhanced-gnss`](https://github.com/Ajuntanaga/cubic-time-dilation-model-for-enhanced-gnss) (hand-made) |
+| VII | Spin | Spin in temporal dimensions | | [`chronowave-spin-in-temporal-dimensions`](https://github.com/Ajuntanaga/chronowave-spin-in-temporal-dimensions) |
+| VIII | Hydrogen | Temporal hydrogen → two-clock periodic table | yes | [`cubic-time-dimensions-in-quantum-mechanics`](https://github.com/Ajuntanaga/cubic-time-dimensions-in-quantum-mechanics) (hand-made) |
+| IX | Cosmos | Dark energy & the cold sky | yes | [`chronowave-dark-energy-cold-sky`](https://github.com/Ajuntanaga/chronowave-dark-energy-cold-sky) |
+| X | Field Eq. | The temporal field equation | yes | [`chronowave-temporal-field-equation`](https://github.com/Ajuntanaga/chronowave-temporal-field-equation) |
+| XI | Horizons | Temporal horizons | yes | [`chronowave-temporal-horizons`](https://github.com/Ajuntanaga/chronowave-temporal-horizons) |
+| XII | Attractor | The attractor | yes | [`chronowave-attractor`](https://github.com/Ajuntanaga/chronowave-attractor) |
+| XIII | M3 Source | The M3 source lattice | | [`chronowave-m3-source-lattice`](https://github.com/Ajuntanaga/chronowave-m3-source-lattice) |
+| XIV | t³ Volume | The temporal volume | yes | [`chronowave-temporal-volume`](https://github.com/Ajuntanaga/chronowave-temporal-volume) |
+| XV | Harmonic Leg | The harmonic leg | | [`chronowave-harmonic-leg`](https://github.com/Ajuntanaga/chronowave-harmonic-leg) |
+| XVI | Observatory | The observatory | yes | none |
+| XVII | Compendium | The compendium | | [`chronowave-verdicts-and-rulings`](https://github.com/Ajuntanaga/chronowave-verdicts-and-rulings) |
 
 ## Standalone copies
 
-Modules VI and VIII also have their own public repositories. The copies here are byte-identical (sha256, checked 2026-11-11) to the files in those repositories at the commits named below. The repositories also carry a README, citation metadata, a license, PDFs and a DOI-badge workflow (the Module VI repository adds a satellite data file and a Python model with tests); none of that is mirrored here. No other module has a standalone repository.
+Modules VI and VIII also have their own public repositories. The copies here are byte-identical (sha256, checked 2026-11-11) to the files in those repositories at the commits named below. The repositories also carry a README, citation metadata, a license, PDFs and a DOI-badge workflow (the Module VI repository adds a satellite data file and a Python model with tests); none of that is mirrored here. The other modules have standalone pages of their own, cut from this page by `tools/split` on 2026-11-14 and published as one public repository each (the last column of the table above; log item 29c); Module XVI has none (its telemetry reads the state of every other module). Those pages are generated, not hand-made like VI and VIII; `tools/split/README.md` says what the scripts check and what they do not.
 
 | Module | Repository | Commit |
 |---|---|---|
@@ -64,10 +64,11 @@ Download or clone the repository, then open `Chronowave_Temporal_Engine.html` fr
 - **The b91 module pass is closed (log Resume point, step 5).** Its numbered items are in the log; the next point says what has not been checked.
 - **No independent regression check yet.** An independent regression review of the pass was started and paused (log item 29b); no reviewer has reported. The checks recorded in the log were made in the sessions that made the edits.
 - **AI-assisted.** The b91 pass and the log were made in Claude Code sessions at the author's direction; where the log says "the user", it means the author.
+- **The other module pages are generated and only smoke-tested.** `tools/split` cut them from this page; a scripted browser test loaded each one and exercised its controls without an uncaught error or an unexpectedly blank canvas, and a mechanical comparison found their styles, section markup and script lines identical to this page's (after the link rewrites and, for five modules, small stand-ins). None was compared with its original module for identical behaviour. Modules IV, XII, XIII, XIV and XV read the live state of other modules and use fixed stand-ins for it; each repository's README lists what that changes.
 - **`Manual.md` is hand-maintained and behind the page.** It is the rev-b90 extraction of 2026-10-10 plus hand edits: the open-rulings section on 2026-10-10 and, in the b91 pass, log items 11, 15, 20, 28 (the log may not list every edit). The page's condensed notes link to it for their full text, and no extraction script is kept in this repository, so do not regenerate it from the HTML: that would drop those edits.
 - **Open items are the author's call, not tasks.** The log's "Left for the author" paragraph lists findings that were found and not changed; the log marks them as the author's call, not a to-do. The open rulings are cards in Module XVII (`#compendium`). The log's Resume point step 2 ("Address the four open items above in this fork") predates three of those cards; the four items it means are the fork-point list of standing open items, all four of them among the six cards. Step 3 ("Update this log's revision trail…") refers to a trail the log has no section for.
 - **The log mostly predates this repository.** Its statements that there is no git repository now hold only for the parent `Chronowave Dynamics/` folder, not for `Compendium/`, and its "Modules I through XV-ish" is out of date (the page has 17). The log notes the first beside the lines that say it, and item 29b records the first push.
-- **No license, tags or releases.** Without a license all rights are reserved by default, beyond viewing and forking on GitHub; a license is the author's decision. For the two public standalone repositories, Zenodo archives a new version on each GitHub release, so cut releases there only on purpose.
+- **No license, tags or releases.** Without a license all rights are reserved by default, beyond viewing and forking on GitHub; a license is the author's decision. For the two public standalone repositories, Zenodo archives a new version on each GitHub release, so cut releases there only on purpose. None of the module repositories has a license, tag or release either.
 
 ## History
 
@@ -80,7 +81,7 @@ git log --oneline --reverse
 git diff e536de6 251855e -- Chronowave_Temporal_Engine.html
 ```
 
-A third commit records the first push: log item 29b and the notes the log now carries beside its "no git" statements, corrections to this README after the pre-push review, and one corrected line in the Manual's header.
+Later commits: the third records the first push (log item 29b, the notes the log now carries beside its "no git" statements, corrections to this README after the pre-push review, and one corrected line in the Manual's header); the next two add `tools/split` and fix one line of its packaging script; the last lists the module repositories (log item 29c).
 
 ## Not in this repository
 

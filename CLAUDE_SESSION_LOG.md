@@ -446,8 +446,8 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     this entry is the third. It is public at the author's choice, so that GitHub Actions, which the author uses
     to offload processing, is not held back by private-repository quotas. No license, tag, release or workflow:
     a license is the author's decision, and a release on the public standalone repositories would make Zenodo
-    mint new DOIs. A repository for each of the 15 modules without one is planned at the author's request and
-    does not exist yet; Modules VI and VIII keep their own public repositories. Before the push, five read-only
+    mint new DOIs. A repository for each of 14 of the 15 modules without one was made the same day (item 29c);
+    Modules VI and VIII keep their own, hand-made, public repositories. Before the push, five read-only
     reviewers (secrets and personal data, links and prose, README accuracy, hygiene, a cold read) checked the
     tree. A spend limit interrupted the first run and two of the five were re-run; none reported a blocker.
     Their findings were fixed in two amends of the then-unpushed second commit, which took a link to the
@@ -467,6 +467,23 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     the six "Open rulings" cards that Module XVII now shows (three of the six came later), and those cards are
     the author's rulings, not tasks; step 3 mentions a "revision trail" but this log has no such heading; paths
     beginning with `~/`, `../` or `ro/` are on the author's machine.
+29c. **Module repositories (2026-11-14, on "the compendium split into the separate modules and a separate repo
+    for all together").** The page was cut into standalone pages with the scripts in `tools/split` (added in the
+    fourth commit): 14 of the 15 modules without a repository of their own now have a public one, named
+    `chronowave-…` (README.md lists them). Each repository holds one page, that module's part of `Manual.md`, a
+    README and a `.gitignore`; the section markup, the styles and the script statements are copied from the page
+    without change, and each README says what else differs. Module XVI was not split: its telemetry reads the
+    state of every other module. Modules IV, XII, XIII, XIV and XV read other modules' live state (mostly the
+    lattice of Module IV) and use fixed stand-ins for it from `tools/split/stubs/`; each README lists what that
+    fixes. Checks: a scripted headless-Chromium test per page (it loads the page, moves every control, clicks
+    every button and sends pointer, wheel and key events to every canvas; an uncaught exception, a console error
+    or an unexpectedly blank canvas fails it), and a mechanical comparison of each repository with this page
+    (same styles, same section markup after the link rewrites, every script line present verbatim, same manual
+    text). These show that the pages load and run without errors, not that a module behaves exactly as in the
+    full page. Found on the way and left to the author: Module VIII's drawing code for the "paper's Fig. 1" view
+    uses a variable `w` that does not exist in that scope (a `ReferenceError` at page line 7305; the standalone
+    Module VIII has the same line). No license, tag, release or workflow was added to any repository, and the
+    two hand-made module repositories were not changed.
 30. **How this was checked.** The preview pane stops delivering animation frames when its window is
     backgrounded (timers keep running). The page was re-run with `requestAnimationFrame` replaced by a timer
     shim (written over the document from the browser console; nothing in the file) so every changed draw
@@ -508,6 +525,6 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    cross-checks; no further paper work is outstanding.
 5. The 2026-11-09/11 module pass (items 1–32 above) is closed. What it left open is the "Left for the
    author" paragraph, which is the author's call and not a to-do. Standalone VI and VIII were pushed to
-   their repositories on 2026-11-11 (item 29a); the other 15 modules have no standalone repository. The
-   tracked files of the folder (all but the git-ignored `.bak.html`) were pushed to one public repository on
-   2026-11-14 (item 29b).
+   their repositories on 2026-11-11 (item 29a); the other 15 modules had none then, and 14 of them got one
+   on 2026-11-14 (item 29c). The tracked files of the folder (all but the git-ignored `.bak.html`) were
+   pushed to one public repository on 2026-11-14 (item 29b).
