@@ -942,7 +942,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
           <input type="range" id="gnAlt" min="200" max="40000" step="20" value="20180">
         </div>
         <div class="ctrl narrow" style="flex:1 1 240px">
-          <label for="gnGM">body GM &times;10<sup>13</sup> m&sup3;/s&sup2; <output id="gnGMOut">39.86 &middot; Earth</output></label>
+          <label for="gnGM"><span>body GM &times;10<sup>13</sup> m&sup3;/s&sup2;</span> <output id="gnGMOut">39.86 &middot; Earth</output></label>
           <input type="range" id="gnGM" min="2" max="130" step="0.01" value="39.86">
         </div>
         <div class="ctrl narrow" style="flex:1 1 100%">
@@ -1438,7 +1438,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
         <canvas class="viz" id="cosmoCanvas" height="430" aria-label="Log-log chart of dark energy density decaying with cosmic time, with a Hubble tension gauge"></canvas>
         <div class="controls">
           <div class="ctrl" style="flex:2 1 280px">
-            <label for="coTR">Cosmic time (log&#8321;&#8320; s) <output id="coTROut">17.64</output></label>
+            <label for="coTR">Cosmic time (log&#8321;&#8320; s) <output id="coTROut">17.639</output></label>
             <input type="range" id="coTR" min="15.5" max="18" step="0.001" value="17.639">
           </div>
           <div class="ctrl">
@@ -1460,7 +1460,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
       <div class="panel">
         <div class="panel-head">
           <span>ISW void probe &middot; <span class="sym">&Delta;T &prop; &alpha;&#8323;(t<sub>i</sub><sup>&minus;3</sup> &minus; t<sub>f</sub><sup>&minus;3</sup>)</span></span>
-          <span class="readout">observed &Delta;T = <b id="voT">-150 &micro;K</b></span>
+          <span class="readout">paper&rsquo;s &Delta;T = <b id="voT">-150 &micro;K</b></span>
         </div>
         <canvas class="viz" id="voidCanvas" height="298" aria-label="Simulated CMB patch showing the selected cold spot"></canvas>
         <div class="controls" style="padding-top:12px;padding-bottom:0">
@@ -1483,7 +1483,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
           </div>
           <div class="ctrl narrow" style="flex:1 1 100%">
             <span class="readout">predicted ISW: <b id="cvT">&minus;19.8 &micro;K</b> &middot; <b id="cvRank"></b>
-              <br><span style="opacity:.7">cosmology for that figure: &Omega;<sub>&Lambda;</sub> = 0.45 + 0.35&thinsp;s and r<sub>H</sub> = 4440 Mpc, a hand-set mapping (ASSUMED).
+              <br><span style="opacity:.7">cosmology for that figure: &Omega;<sub>&Lambda;</sub> = 0.45 + 0.35&thinsp;s, &Omega;<sub>m</sub> = 1 &minus; &Omega;<sub>&Lambda;</sub> floored at 0.05 (so the figure stops changing above s&nbsp;&asymp;&nbsp;1.43), and r<sub>H</sub> = 4440 Mpc, a hand-set mapping (ASSUMED).
               With this module's own &Omega;<sub>m</sub> = <span id="cvOm">&mdash;</span> and H<sub>0</sub> = <span id="cvH">&mdash;</span> km/s/Mpc: <b id="cvT2">&mdash;</b></span></span>
           </div>
         </div>
@@ -1611,7 +1611,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
           <button class="chip" data-tfp="vac">Vacuum &middot; sources muted</button>
           <button class="chip" data-tfp="ein">Einstein limit &middot; &alpha;,&epsilon; &rarr; 0</button>
           <button class="chip" data-tfp="full" aria-pressed="true">Full chronowave</button>
-          <button class="chip" data-tfp="t2" title="The t&#178; channel alone: below the &alpha;&#8322;&#178; &lt; 5.55 &alpha;&#8323; line, so hyperbolic only up to a finite amplitude">t&#178; channel alone &middot; &alpha;&#8323; &rarr; 0</button>
+          <button class="chip" data-tfp="t2" title="The t&#178; channel alone: &alpha;&#8323; = 0 puts it above the line &alpha;&#8322;&#178; = 5.55 &alpha;&#8323;, so the equation stays hyperbolic only while h &gt; &minus;1.45 (at &alpha;&#8322; = 1)">t&#178; channel alone &middot; &alpha;&#8323; &rarr; 0</button>
           <button class="chip" data-tfp="edge" title="Couplings set just inside the hyperbolicity line">On the line &middot; &alpha;&#8322;&#178; = 5.5 &alpha;&#8323;</button>
           <button class="chip" data-tfp="tens" title="Both tension pairs doubled at short proper time: the anti-restoring route">Strong tension &middot; &epsilon; = 2, &tau; = 0.5</button>
           <button class="chip" data-tfp="hor" title="Horizon dressing near its maximum">Near horizon &middot; R &rarr; 0.9</button>
@@ -2210,7 +2210,7 @@ kbd{font-family:var(--mono);font-size:10px;color:var(--cyan);border:1px solid va
       <div class="paper" data-jump="gnss" role="link" tabindex="0" title="Jump to the embodying module"><span class="glyph">&gamma;</span>
         <div class="pn">01 / geodesy</div>
         <h3>Cubic Time Dilation for Enhanced GNSS</h3>
-        <p>The (1&minus;&beta;&#178;)<sup>&minus;1/3</sup> model, validated over 1,000 simulations against BEIDOU, GLONASS, GPS and GALILEO constellations. Module VI.</p>
+        <p>The (1&minus;&beta;&#178;)<sup>&minus;1/3</sup> model, claimed on 1,000 simulations against BEIDOU, GLONASS, GPS and GALILEO constellations and since excluded by an independent measurement. Module VI.</p>
       </div>
       <div class="paper" data-jump="scramble" role="link" tabindex="0" title="Jump to the embodying module"><span class="glyph">&Phi;</span>
         <div class="pn">02 / gravitation</div>
@@ -5907,6 +5907,17 @@ const gn = {
   }
 };
 gn.el.r.addEventListener("input", () => gn.upd());
+/* The slider is step="any" so that presets and the orbit solver can feed it exact values, but Chrome moves such a
+   range by 1% of its span per arrow press (0.06 dex, 15% in beta): too coarse to fine-tune or to land on a preset.
+   The arrows get their old 0.005 dex back; PageUp/PageDown, Home and End keep their native behaviour. */
+gn.el.r.addEventListener("keydown", e => {
+  const d = e.key === "ArrowRight" || e.key === "ArrowUp" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowDown" ? -1 : 0;
+  if (!d || e.altKey || e.ctrlKey || e.metaKey) return;
+  e.preventDefault();
+  const r = gn.el.r;
+  r.value = Math.min(+r.max, Math.max(+r.min, +r.value + d*0.005));
+  r.dispatchEvent(new Event("input", {bubbles: true}));
+});
 document.querySelectorAll('#gnss .chip').forEach(c => c.addEventListener("click", () => {
   gn.el.r.value = Math.log10(+c.dataset.v / C_LIGHT); gn.upd();
 }));
@@ -6388,7 +6399,7 @@ document.getElementById("gnlSend").addEventListener("click", () => {
   if (!s2) return;
   const st = gnl.state(s2, Date.now()/1000);
   const vr = document.getElementById("gnVR");
-  if (vr){ vr.value = Math.log10(Math.max(1e-9, Math.sqrt(st.b2))).toFixed(3); vr.dispatchEvent(new Event("input")); }
+  if (vr){ vr.value = Math.log10(Math.max(1e-9, Math.sqrt(st.b2))); vr.dispatchEvent(new Event("input")); }
 });
 /* ============ THE ALMANAC, REPAIRED ============
    Reported as "not working or blocked", and the old handler could not tell you
@@ -7142,7 +7153,7 @@ const ORB = {
     /* feed the derived beta into the existing chart/compendium machinery */
     const b = v/this.c;
     const vr = document.getElementById("gnVR");
-    if (vr){ vr.value = Math.log10(b).toFixed(3); vr.dispatchEvent(new Event("input")); }
+    if (vr){ vr.value = Math.log10(b); vr.dispatchEvent(new Event("input")); }   /* unrounded: the slider is step="any", and a 3-decimal log made the tile read 3.871 km/s under a solver reading 3.875 */
   }
 };
 ["alt","gm"].forEach(k => ORB.el[k].addEventListener("input", () => ORB.upd()));
@@ -9057,7 +9068,7 @@ const co = {
   upd(){
     const t = Math.pow(10, +this.el.t.value), s = +this.el.a.value;
     const rho = s*RHO0*Math.pow(T0/t,3), P = 3*rho/t;
-    this.el.tOut.value = (+this.el.t.value).toFixed(2);
+    this.el.tOut.value = (+this.el.t.value).toFixed(3);
     this.el.aOut.value = s.toFixed(2) + "\u00D7";
     this.el.T.textContent = t.toExponential(2) + " s";
     this.el.rho.innerHTML = rho.toExponential(2) + " kg/m\u00B3";
@@ -9494,8 +9505,13 @@ animate(document.getElementById("cosmoCanvas"), (ctx, w, h, t) => {
   ctx.beginPath(); ctx.arc(x, gy, 5.5, 0, 7); ctx.fill();
   ctx.shadowBlur = 0;
   ctx.font = "10px 'IBM Plex Mono', monospace";
-  ctx.fillText("dynamic " + H0d.toFixed(1), x, gy + 24);
+  /* the gauge spans 65.5-75.5; the Friedmann H0 runs from 37.8 to 106 over the slider, so a dot beyond
+     the ends is parked there with an arrow, and the label is kept inside the canvas instead of being
+     centred on the parked dot (it used to run off the right edge: "dynamic 106.") */
+  const hLab = (H0d < Hmin ? "\u25C2 " : "") + "dynamic " + H0d.toFixed(1) + (H0d > Hmax ? " \u25B8" : "");
+  const hW = ctx.measureText(hLab).width;
   ctx.textAlign = "left";
+  ctx.fillText(hLab, Math.max(gx0 - 6, Math.min(gx1 + 6 - hW, x - hW/2)), gy + 24);
 });
 
 /* voids */
@@ -9503,8 +9519,8 @@ const VOIDS = [
   {name:"Great Cold Spot", r:150, d:-0.3, z:0.2, dT:-150, t3:"1.58e-2"},
   {name:"Bo\u00F6tes Void", r:330, d:-0.4, z:0.05, dT:-120, t3:"2.35e-3"},
   {name:"Eridanus Supervoid", r:1800, d:-0.5, z:0.2, dT:-180, t3:"3.91e-3"},
-  {name:"SDSS Median", r:100, d:-0.2, z:0.5, dT:-5, t3:"2.95e-3"},
-  {name:"DES Largest", r:400, d:-0.4, z:0.8, dT:-30, t3:"3.23e-3"}
+  {name:"SDSS Median", r:100, d:-0.2, z:0.5, dT:-5, t3:"n/a"},   /* 2.95e-3 and 3.23e-3 are the paper's t^3 terms for DESI Void 1 (z 0.1) and Euclid Void 2 (z 0.15), not for these two voids */
+  {name:"DES Largest", r:400, d:-0.4, z:0.8, dT:-30, t3:"n/a"}
 ];
 let voidIdx = 0, voidBlend = 0;
 const voEl = {
@@ -9855,6 +9871,7 @@ document.getElementById("bhToX").addEventListener("click", () => {
   if (!el) return;
   el.value = Math.min(0.9, Math.max(0, 1/bh.x())).toFixed(2);
   el.dispatchEvent(new Event("input"));
+  tfe.chipsOff();                                      /* R no longer matches the regime chip that was lit */
   const n2 = document.getElementById("bhXNote");
   if (n2) n2.innerHTML = "sent r<sub>s</sub>/r = " + el.value +
     (1/bh.x() > 0.9 ? " (clamped from " + (1/bh.x()).toFixed(3) + ": X's R field tops out at 0.90)" : "") +
@@ -10316,16 +10333,23 @@ const lo = {
       /* saturation latches: once the twins are a lobe apart the separation wanders back under 12
          while the clock keeps running, and the estimate then decayed toward zero under a verdict */
       if (sep >= 12) this.twinSat = true;
-      const usable = !this.twinSat && sep > this.twinD0*20 && (this.simT - this.twinT0) > 1;
+      const win = this.simT - this.twinT0, usable = !this.twinSat && sep > this.twinD0*20 && win > 1;
+      /* What one release really does (300 canonical releases, this integrator): the finite-time estimate sits within +-15 % of
+         0.9056 only 53 % of the time at 8 sim-s, 73 % at 12 s and 77 % just before the twins saturate; +-25 % holds 81 %, 90 %
+         and 93 %. So the verdict waits for 10 sim-s and uses +-25 %. The first second of a release can also contract along the
+         stable directions (90 of 200 releases dip below d0/2), which is not "no chaos", so that text waits for 3 sim-s. */
+      const settled = win > 10;
       const lEl = document.getElementById("loLyap");
       if (lEl) lEl.innerHTML = !usable
-        ? "<span style='opacity:.55'>" + (this.twinSat ? "saturated \u2014 re-release the twin" : sep < this.twinD0*0.5 ? "shrinking \u2014 the twins converge (no chaos at these settings)" : "growing\u2026") + "</span>"
+        ? "<span style='opacity:.55'>" + (this.twinSat ? "saturated \u2014 re-release the twin" : sep < this.twinD0*0.5 ? (win > 3 ? "shrinking \u2014 the twins converge (no chaos at these settings)" : "measuring\u2026") : "growing\u2026") + "</span>"
         : "\u03BB \u2248 <b>" + el.toFixed(3) + "</b>" + (canon
-            ? (Math.abs(el/0.9056 - 1) < 0.15
+            ? (!settled
+                ? " <span style='opacity:.55'>(settling \u2014 a single release scatters too much to judge before 10 s)</span>"
+                : Math.abs(el/0.9056 - 1) < 0.25
                 ? " <span style='color:var(--cyan)'>\u2713 vs 0.9056 published</span>" +
-                  " <span style='opacity:.55'>(finite-time estimate from one release; releases scatter \u00B115\u0025)</span>"
+                  " <span style='opacity:.55'>(finite-time estimate from one release; releases scatter about \u00B125\u0025)</span>"
                 : " <span style='color:var(--amber)'>vs 0.9056 published \u2014 off by " + (el - 0.9056).toFixed(3) +
-                  ", beyond the \u00B115\u0025 scatter a single release shows</span>")
+                  ", beyond the \u00B125\u0025 scatter a single release shows (about 1 in 10 do; release again)</span>")
             : " <span style='opacity:.6'>(off-canonical \u03C3\u03C1\u03B2 \u2014 no published value to check)</span>");
       if (!isFinite(sep) || sep > 200){ this.twin = null; this.twinTrail.length = 0; this.twinT0 = undefined; }
     }
@@ -10346,7 +10370,7 @@ const lo = {
          Same number on any machine, which is what a measurement has to be. */
       this.jumpTimes.push(this.simT);
       while (this.jumpTimes.length && this.simT - this.jumpTimes[0] > 60) this.jumpTimes.shift();
-      if (this.tick){
+      if (this.tick && !this.hush){
         const ctx = AC.get(), now = ctx.currentTime;
         const g = ctx.createGain();
         g.gain.setValueAtTime(0.09, now);
@@ -10374,13 +10398,23 @@ lo.twin = null; lo.twinTrail = [];
    froze whenever that canvas was scrolled away: Module XIV's "Lorenz drive" then ran on a constant. It
    now advances in real time (540 steps per second, which is 9 per frame at 60 Hz) from whoever needs it,
    without double-stepping: each caller steps only the time elapsed since the last step. */
-lo.keepAlive = function(){
+lo.keepAlive = function(hush){
   if (reduced) return;
   const now = performance.now();
   if (this.lastStep === undefined){ this.lastStep = now; return; }
   const n = Math.min(300, Math.floor((now - this.lastStep)/1000*540));
-  if (n > 0){ for (let i = 0; i < n; i++) this.step(0.004); this.lastStep += n/540*1000; }
+  if (n > 0){
+    const was = this.hush; this.hush = !!hush;              /* hush: the steps are taken for a reader, so a jump makes no tick */
+    try { for (let i = 0; i < n; i++) this.step(0.004); } finally { this.hush = was; }
+    this.lastStep += n/540*1000;
+  }
   if (now - this.lastStep > 600) this.lastStep = now;       /* a long gap (hidden tab) is dropped, not replayed */
+};
+/* For readers that are not a canvas (the Observatory's attractor ports, Module XIV's volume reading): the attractor froze
+   in their traces whenever Module XII and the XIV drive were both off screen. Step it only if nobody has in the last
+   100 ms, so an on-screen canvas never loses a tick to the reader, and silently, so scrolling away does not start a sound. */
+lo.peek = function(){
+  if (this.lastStep === undefined || performance.now() - this.lastStep > 100) this.keepAlive(true);
 };
 document.getElementById("loTwin").addEventListener("click", () => {
   lo.twin = {x: lo.x + 1e-6, y: lo.y, z: lo.z};
@@ -10840,6 +10874,39 @@ tvCv.addEventListener("pointermove", e => {
 ["pointerup","pointercancel"].forEach(ev => tvCv.addEventListener(ev, () => {
   tv.dragging = false; tvCv.style.cursor = "grab";
 }));
+/* The field sampler lives outside the frame. The "volume lit" number was only ever written by the frame, so the
+   Observatory's trace of it froze whenever this canvas was scrolled away; tv.litNow() takes the same 11^3 reading on
+   the same clock (tv.t0 is taken where the frame loop starts) without drawing. peek = the caller is not a canvas, so
+   the attractor is stepped only if nobody has lately, and silently. */
+tv.t0 = performance.now();
+tv.sampler = function(t, peek){
+  const k1 = +tv.el.w1.value * Math.PI, k2 = +tv.el.w2.value * Math.PI, k3 = +tv.el.w3.value * Math.PI;
+  let ph = (reduced ? 0.8 : t) * +tv.el.ph.value;
+  if (tv.driveOn){ if (peek) lo.peek(); else lo.keepAlive(); ph = ph*0.25 + lo.x * 0.22; }   /* the attractor drives the phase (and is stepped from here when its own canvas is off screen) */
+  const damp = tv.dampOn ? sz.params().D : 1;              /* the scramble zone damps the field */
+  const mode = tv.mode;
+  return function fieldAt(T1, T2, T3){
+    /* Beat alignment is cos of the SUMMED phase, Re(Psi) of the header equation and Module V's coupled form;
+       its bright sets are planes, as the note below says. It was the mean of three cosines, which has
+       points rather than planes, rarely reaches the product field's peaks, and needed a hidden +0.2 on the
+       threshold to look similar. */
+    if (mode === 1) return Math.cos(k1*T1 + k2*T2 + k3*T3 + ph) * damp;
+    const c1 = Math.cos(k1*T1 + ph), c2 = Math.cos(k2*T2 + ph*0.8), c3 = Math.cos(k3*T3 + ph*0.6);
+    return c1*c2*c3 * damp;
+  };
+};
+tv.litNow = function(){
+  const f = tv.sampler(reduced ? 0 : (performance.now() - tv.t0)/1000, true), th = +tv.el.th.value;
+  let lit = 0, total = 0;
+  for (let i = 0; i <= 10; i++) for (let j = 0; j <= 10; j++) for (let k = 0; k <= 10; k++){
+    total++; if (Math.abs(f(-1 + i/5, -1 + j/5, -1 + k/5)) >= th) lit++;
+  }
+  return 100*lit/total;
+};
+/* the frame's number when a frame wrote it a moment ago, otherwise a fresh reading */
+tv.litRead = function(){
+  return performance.now() - (tv.litAt || -1e9) < 150 ? tv.litPct : tv.litNow();
+};
 animate(tvCv, (ctx, w, h, t) => {
   ctx.clearRect(0, 0, w, h);
   if (!tv.dragging && !reduced && !tv.lock) tv.rotY += 0.0016;
@@ -10863,21 +10930,9 @@ animate(tvCv, (ctx, w, h, t) => {
     });
   }
   edges(0.22);
-  /* shared field sampler — with cross-module links */
-  const k1 = +tv.el.w1.value * Math.PI, k2 = +tv.el.w2.value * Math.PI, k3 = +tv.el.w3.value * Math.PI;
-  let ph = (reduced ? 0.8 : t) * +tv.el.ph.value;
-  if (tv.driveOn){ lo.keepAlive(); ph = ph*0.25 + lo.x * 0.22; }   /* the attractor drives the phase (and is stepped from here when its own canvas is off screen) */
-  const damp = tv.dampOn ? sz.params().D : 1;              /* the scramble zone damps the field */
+  /* shared field sampler — with cross-module links (built by tv.sampler above, so the Observatory can take the same reading) */
+  const fieldAt = tv.sampler(t);
   const sp = tv.sweep ? Math.sin((reduced ? 1 : t) * 0.35) * 0.85 : null;
-  function fieldAt(T1, T2, T3){
-    /* Beat alignment is cos of the SUMMED phase, Re(Psi) of the header equation and Module V's coupled form;
-       its bright sets are planes, as the note below says. It was the mean of three cosines, which has
-       points rather than planes, rarely reaches the product field's peaks, and needed a hidden +0.2 on the
-       threshold to look similar. */
-    if (tv.mode === 1) return Math.cos(k1*T1 + k2*T2 + k3*T3 + ph) * damp;
-    const c1 = Math.cos(k1*T1 + ph), c2 = Math.cos(k2*T2 + ph*0.8), c3 = Math.cos(k3*T3 + ph*0.6);
-    return c1*c2*c3 * damp;
-  }
   let litCount = 0, total = 0;
   const th = +tv.el.th.value;
 
@@ -11033,7 +11088,7 @@ animate(tvCv, (ctx, w, h, t) => {
       total++; if (Math.abs(fieldAt(-1 + i/5, -1 + j/5, -1 + k/5)) >= th) litCount++;
     }
   }
-  tv.litPct = 100*litCount/total;
+  tv.litPct = 100*litCount/total; tv.litAt = performance.now();
   tv.el.lit.textContent = Math.round(tv.litPct) + "%";
   ctx.fillStyle = "rgba(237,232,220,.35)"; ctx.font = "10.5px 'IBM Plex Mono', monospace";
   ctx.fillText(tv.render === 1 ? "cubic time mesh \u00B7 drag to rotate" : "drag to rotate the temporal volume", 14, h - 14);
@@ -12103,10 +12158,11 @@ tfeCvEl.addEventListener("pointerdown", e => {
   if (i < 0 || i >= n) return;
   const fy = r.height*0.14, fh = r.height*0.58;
   const y = e.clientY - r.top;
-  if (y > fy + fh + 6){ tfe.mutes[i] = !tfe.mutes[i]; return; }
+  if (y > fy + fh + 6){ tfe.mutes[i] = !tfe.mutes[i]; tfe.chipsOff(); return; }
   tfe._mix = i;
   tfeCvEl.setPointerCapture(e.pointerId);
   tfe.gains[i] = Math.max(0, Math.min(1.5, (fy + fh - y)/fh * 1.5));
+  tfe.chipsOff();                                   /* a hand-set mix is no longer any regime */
 });
 tfeCvEl.addEventListener("pointermove", e => {
   if (tfe._mix === null) return;
@@ -12115,7 +12171,7 @@ tfeCvEl.addEventListener("pointermove", e => {
   tfe.gains[tfe._mix] = Math.max(0, Math.min(1.5, (fy + fh - (e.clientY - r.top))/fh * 1.5));
 });
 ["pointerup","pointercancel"].forEach(ev => tfeCvEl.addEventListener(ev, () => { tfe._mix = null; }));
-tfeCvEl.addEventListener("dblclick", () => { if (masterTier === 1){ tfe.gains = [1,1,1,1,1,1,1,1]; tfe.mutes = tfe.mutes.map(() => false); } });
+tfeCvEl.addEventListener("dblclick", () => { if (masterTier === 1){ tfe.gains = [1,1,1,1,1,1,1,1]; tfe.mutes = tfe.mutes.map(() => false); tfe.chipsOff(); } });
 ["A2","A3","E2","E3","R","Tau"].forEach(k => {
   tfe.el[k] = document.getElementById("tf" + k);
   tfe.el[k + "Out"] = document.getElementById("tf" + k + "Out");
@@ -12324,6 +12380,7 @@ document.getElementById("tfeAuto").addEventListener("click", function(){
   this.classList.add("live"); this.setAttribute("aria-pressed","true"); this.textContent = "\u25A0 Balancing\u2026";
   const btn = this;
   let iters = 0;
+  const ctl = new Map();       /* the controller's own unrounded values: the typed fields show 2 decimals, and rounding each step would stall the small R lever */
   tfe._resAvg = undefined; clearTimeout(tfe._autoT);
   tfe._auto = setInterval(() => {
     /* The controller advances the field itself. The residual used to refresh only from the engine canvas's
@@ -12341,8 +12398,13 @@ document.getElementById("tfeAuto").addEventListener("click", function(){
       return;
     }
     const nudge = (el, d, lo2, hi) => {
-      el.value = Math.min(hi, Math.max(lo2, +el.value + d));
+      /* the field gets 2 decimals (it used to receive 0.9313499999...); the loop keeps its own full-precision value unless the user has typed over it */
+      const cur = ctl.has(el) && Math.abs(ctl.get(el) - +el.value) < 0.0051 ? ctl.get(el) : +el.value;
+      const v = Math.min(hi, Math.max(lo2, cur + d));
+      ctl.set(el, v);
+      el.value = v.toFixed(2);
       el.dispatchEvent(new Event("input"));
+      tfe.chipsOff();                                   /* the controller moves the couplings, so no regime chip describes them */
     };
     /* |res| is an RMS imbalance; its sign only says which side's summed magnitudes is larger and
        is no gradient. The old loop raised alpha whenever res < 0, which makes |res| larger, and ran
@@ -12541,7 +12603,7 @@ tfe.terms = function(tArg){
   let r2 = 0;
   for (let i = 0; i < N; i++) r2 += S.rho[i]*S.rho[i];
   const res = Math.sqrt(r2/N)*(LHS >= RHS ? 1 : -1)*tfe.RES_SC;
-  tfe.res = res;
+  tfe.res = res; tfe.resAt = now;
   return (tfe.T = {...T2, LHS, RHS, res, a2, a3, e2, e3, R, tau});   /* cached: readers use tfe.T / tfe.res instead of stepping the field again */
 };
 /* BLOW-UP TEST. The same eight operators as tfe.terms(), integrated offline from chosen initial
@@ -12555,19 +12617,23 @@ tfe.blow = function(P, m){
   const cmax = Math.sqrt(64*Math.max(3.2, c2(1.6*P.A), c2(-1.6*P.A)));
   const dt = 0.25*dx/cmax, steps = Math.ceil(P.T/dt), every = Math.max(1, Math.floor(steps/240));
   const hor = 1/(1 - 0.999*P.R), lad = (1/(P.tau*P.tau) + 1/P.tau + 1)*0.14, r2 = Math.SQRT2;
-  const out = { t: [], G: [], amp: [], N, dt, hyp: true, finite: true, spec: null };
+  const out = { t: [], G: [], amp: [], N, dt, hyp: true, finite: true, why: "", spec: null };
   let ph = 0;
   for (let s = 0; s <= steps; s++){
     if (s % every === 0 || s === steps){
-      let g = 0, a = 0;
+      let g = 0, a = 0, bad = false;
       for (let i = 0; i < N; i++){
-        const d = Math.abs(hh[(i + 1) % N] - hh[(i + N - 1) % N])/(2*dx);
+        const d = Math.abs(hh[(i + 1) % N] - hh[(i + N - 1) % N])/(2*dx), v = Math.abs(hh[i]);
+        /* NaN fails every comparison, so "d > g" silently skipped it and a NaN field read as a quiet one; test the negation.
+           A non-finite sample is never recorded: the verdict, the plot and the readout all take a maximum over G. */
+        if (!(d < Infinity) || !(v < Infinity)){ bad = true; break; }
         if (d > g) g = d;
-        const v = Math.abs(hh[i]); if (v > a) a = v;
+        if (v > a) a = v;
         if (c2(hh[i]) <= 0) out.hyp = false;
       }
+      if (bad){ out.finite = false; out.why = "nonfinite"; break; }
       out.t.push(s*dt); out.G.push(g); out.amp.push(a);
-      if (!isFinite(g) || a > 50){ out.finite = false; break; }
+      if (a > 50){ out.finite = false; out.why = "amplitude"; break; }
     }
     ph += dt*1.1;
     for (let i = 0; i < N; i++){
@@ -12586,6 +12652,7 @@ tfe.blow = function(P, m){
     let re = 0, im = 0;
     for (let i = 0; i < N; i++){ const a = 6.283185307*k*i/N; re += hh[i]*Math.cos(a); im -= hh[i]*Math.sin(a); }
     sp[k] = (re*re + im*im)/(N*N);
+    if (!(sp[k] < Infinity)) sp[k] = 0;      /* a run that left the finite range has no spectrum to draw */
   }
   out.spec = sp;
   return out;
@@ -12599,9 +12666,12 @@ tfe.blowVerdict = function(P){
   return { a, b, ga, gb, ratio, kind, tPeak: b.t[b.G.indexOf(gb)] };
 };
 
-/* SCALING WEIGHTS of the 1+1D reduction h_tt = (geometry) - (sources) under x, t -> lambda x,
-   lambda t, h -> lambda^a h, relative to the inertial term. Positive weight wins as the scale
-   shrinks. DERIVED by counting derivatives and powers of h in each operator of tfe.terms(). */
+/* SCALING WEIGHTS of the 1+1D reduction h_tt = (geometry) - (sources), on the zoom
+   h_L(x, t) = L^a h(L x, L t): L > 1 looks at smaller scales, with the amplitude grown by L^a. The weight is
+   the power of L in (term / inertial term) evaluated on h_L at fixed coefficients and a fixed source, so a
+   positive weight wins as the scale shrinks. (It was written "x, t -> lambda x, lambda t, h -> lambda^a h",
+   which reads either way; the a-column signs follow the zoom above.) DERIVED by counting derivatives and
+   powers of h in each operator of tfe.terms(). */
 tfe.SCALE = [
   ["Gμν · curvature", "∂ₓₓh", "0", 0],
   ["α₂ channel", "∂ₓₓ(h²)", "a", 0],
@@ -12618,14 +12688,17 @@ tfe.SCALE = [
   const td = "style='padding-right:18px'";
   let html = "<table style='border-collapse:collapse'><tr style='opacity:.6'><td " + td + ">term</td><td " + td + ">operator in the reduction</td><td " + td + ">weight</td><td " + td + ">at a = 0</td><td>as the scale shrinks</td></tr>";
   tfe.SCALE.forEach(r => {
-    html += "<tr><td " + td + ">" + r[0] + "</td><td " + td + " style='opacity:.8'>" + r[1] + "</td><td " + td + ">" + r[2] + "</td><td " + td + ">" + (r[3] === 0 ? "0" : "−" + (-r[3])) + "</td><td style='color:" +
+    html += "<tr><td " + td + ">" + r[0] + "</td><td style='padding-right:18px;opacity:.8'>" + r[1] + "</td><td " + td + ">" + r[2] + "</td><td " + td + ">" + (r[3] === 0 ? "0" : "−" + (-r[3])) + "</td><td style='color:" +
       (r[3] === 0 ? "var(--amber)'>critical · keeps pace" : "var(--cyan)'>subcritical · falls behind") + "</td></tr>";
   });
   el.innerHTML = html + "</table>" +
-    "<div style='margin-top:8px;opacity:.85'>With a = 0 the critical part is one scale-free equation, ∂ₜₜh = ∂ₓₓP(h), with " +
-    "P′(h) = c²(h) ∝ 3.2 + 2.2α₂h + 2.1α₃h². Its energy scales as λ¹ under the same map, so the conserved quantity does not control small scales: " +
-    "the same position Navier–Stokes is in. It stays a wave equation only while c² &gt; 0, and c² &gt; 0 for every h exactly when " +
-    "<b>α₂² &lt; 5.55 α₃</b>. <span id='tfeScaleNow'></span></div>";
+    "<div style='margin-top:8px;opacity:.85'>Weights are powers of λ in (term ÷ inertial term) on the zoom h<sub>λ</sub>(x, t) = λ<sup>a</sup>h(λx, λt); λ &gt; 1 looks at smaller scales. " +
+    "With a = 0 the critical part is one scale-free equation, ∂ₜₜh = ∂ₓₓP(h), with " +
+    "P′(h) = c²(h) ∝ 3.2 + 2.2α₂h + 2.1α₃h². Its conserved energy, E = ∫[½(∂ₓ⁻¹∂ₜh)² + W(h)] dx with W′ = P, scales as λ⁻¹ under the same zoom, " +
+    "so it falls as the scale shrinks and does not control small scales: the same position Navier–Stokes is in (there too E ∝ λ⁻¹). " +
+    "The first-derivative energy ∫[(∂ₜh)² + c²(∂ₓh)²] dx grows as λ¹ but is not conserved once c² depends on h. " +
+    "It stays a wave equation only while c² &gt; 0, and c² &gt; 0 for every h exactly when " +
+    "<b>α₂² &lt; 5.55 α₃</b> (or α₂ = α₃ = 0, where c² = 3.2). <span id='tfeScaleNow'></span></div>";
 })();
 tfe.blowDraw = function(V){
   const cv = document.getElementById("tfeBlowCanvas"); if (!cv) return;
@@ -12672,24 +12745,36 @@ tfe.blowRun = function(){
     amplitude: "amplitude blow-up · the field runs away" }[V.kind];
   const vEl = document.getElementById("tfeBlowV");
   vEl.textContent = lab; vEl.style.color = V.kind === "regular" ? "var(--cyan)" : "var(--amber)";
-  const tEnd = V.b.t[V.b.t.length - 1];
+  const fa = V.a.finite, fb = V.b.finite;
+  /* each grid is reported on its own: the line used to read "both runs ran away" when only the coarse one had, and to print a
+     peak of Infinity when a sample was taken after the field had left the finite range */
+  const stopped = (r, cells) => r.finite ? "" : "<br><span style='color:var(--amber)'>the " + cells + "-cell run stopped at t = " + r.t[r.t.length - 1].toFixed(2) +
+    (r.why === "nonfinite" ? ", where the field left the finite range" : " with |h| past 50") + ": a finite-time runaway on this grid</span>";
+  const ratioTxt = fa && fb ? V.ratio.toFixed(2)
+    : "not meaningful, " + (!fa && !fb ? "both runs ran away" : "the " + (fa ? "640" : "320") + "-cell run ran away and the " + (fa ? "320" : "640") + "-cell run did not");
   document.getElementById("tfeBlowOut").innerHTML =
     "A = " + P.A.toFixed(2) + ", " + P.modes + " wavelengths, " + (P.forced ? "forced" : "unforced") + " · α₂ = " + P.a2.toFixed(2) + ", α₃ = " + P.a3.toFixed(2) +
     ", ε₂ = " + P.e2.toFixed(2) + ", ε₃ = " + P.e3.toFixed(2) + ", R = " + P.R.toFixed(2) + ", τ = " + P.tau.toFixed(2) +
-    "<br>peak gradient: <b>" + V.ga.toPrecision(3) + "</b> on 320 cells, <b>" + V.gb.toPrecision(3) + "</b> on 640 · ratio <b>" + (V.a.finite && V.b.finite ? V.ratio.toFixed(2) : "not meaningful, both runs ran away") + "</b>" +
+    "<br>peak gradient: <b>" + V.ga.toPrecision(3) + "</b> on 320 cells, <b>" + V.gb.toPrecision(3) + "</b> on 640 · ratio <b>" + ratioTxt + "</b>" +
     " <span style='opacity:.65'>(1.00 means resolved; 2.00 means the grid is what stopped it)</span>" +
-    (V.b.finite ? "" : "<br><span style='color:var(--amber)'>the run stopped at t = " + tEnd.toFixed(2) + " with |h| past 50: a finite-time runaway on this grid</span>") +
+    stopped(V.a, 320) + stopped(V.b, 640) +
     (V.a.hyp && V.b.hyp ? "" : "<br><span style='color:var(--amber)'>c²(h) reached zero: the α₂ channel outran the α₃ channel at this amplitude</span>") +
     "<br><span style='opacity:.65'>ASSUMED: the 1+1D reduction, explicit stepping, two grids. A numerical test, not a proof in either direction.</span>";
   this.blowDraw(V);
 };
 tfe.scaleNow = function(){
   const a2 = +tfe.el.A2.value || 0, a3 = +tfe.el.A3.value || 0, el = document.getElementById("tfeScaleNow"); if (!el) return;
-  const disc = 4.84*a2*a2 - 26.88*a3;
-  const hs = disc <= 0 ? null : a3 > 0 ? (2.2*a2 - Math.sqrt(disc))/(4.2*a3) : a2 > 0 ? 3.2/(2.2*a2) : null;
+  /* c²(h) = 3.2 + 2.2 α₂ h + 2.1 α₃ h², the quadratic tfe.blow tests. Its sign pattern depends on the signs of both couplings
+     (the number inputs stop at 0, a permalink does not), so it is solved rather than read off one root. */
+  const A = 2.1*a3, B = 2.2*a2, C = 3.2, disc = B*B - 4*A*C;
+  const f = x => (x < 0 ? "−" : "") + Math.abs(x).toFixed(2);
+  let txt = null;                                             /* null: c² > 0 for every h */
+  if (A === 0){ if (B !== 0) txt = "hyperbolic only while h " + (B > 0 ? "&gt; " : "&lt; ") + f(-C/B); }
+  else if (A > 0){ if (disc >= 0){ const s = Math.sqrt(disc); txt = "hyperbolic except for h between " + f((-B - s)/(2*A)) + " and " + f((-B + s)/(2*A)); } }
+  else { const s = Math.sqrt(disc), r1 = (-B + s)/(2*A), r2 = (-B - s)/(2*A); txt = "hyperbolic only for h between " + f(Math.min(r1, r2)) + " and " + f(Math.max(r1, r2)); }
   el.innerHTML = "Now: α₂² = " + (a2*a2).toFixed(2) + " against 5.55 α₃ = " + (5.554*a3).toFixed(2) + " — " +
-    (hs === null ? "<span style='color:var(--cyan)'>hyperbolic at every amplitude</span>"
-                 : "<span style='color:var(--amber)'>hyperbolic only while h &gt; −" + hs.toFixed(2) + "</span>");
+    (txt === null ? "<span style='color:var(--cyan)'>hyperbolic at every amplitude</span>"
+                  : "<span style='color:var(--amber)'>" + txt + "</span>");
 };
 ["tfbA", "tfbK"].forEach(id => document.getElementById(id).addEventListener("input", function(){
   document.getElementById(id + "Out").value = id === "tfbA" ? (+this.value).toFixed(2) : this.value; }));
@@ -12919,8 +13004,9 @@ animate(document.getElementById("tfeCanvas"), (ctx, w, h, t) => {
       (kbar < 3 ? "energy sits at the driven scale" : kbar < 8 ? "energy spreading to smaller scales" : "energy at small scales") +
       " · click to inject a pulse", 16, h - 12);
   }
-  /* residual history sparkline — the balancing trajectory */
-  if (tfe.hist.length > 2){
+  /* residual history sparkline — the balancing trajectory. Not in the cascade tier: the box sits where that tier's
+     history panel has its newest, highest-k rows and its title. */
+  if (tfe.hist.length > 2 && masterTier !== 2){
     const sx = w - 178, sy2 = 18, sw = 160, sh2 = 34;
     ctx.fillStyle = "rgba(7,11,20,.72)";
     ctx.fillRect(sx - 6, sy2 - 12, sw + 12, sh2 + 26);
@@ -12997,7 +13083,9 @@ liveEq("Combined potential", () => {
   const p = sz.params(), q = sz.inspect || {T1: 0, T2: 0};
   const C = sz.coupled ? Math.cos(p.k*(q.T1 + q.T2 + p.t3)) : Math.cos(p.k*q.T1)*Math.cos(p.k*q.T2)*Math.cos(p.k*p.t3);
   const Phi = sz.corr ? p.Phi0*(1 + p.D*(C - 1)) : p.Phi0*p.D*C;
-  return String.raw`(T_1,T_2) = (${q.T1.toFixed(2)},\,${q.T2.toFixed(2)})\,t_S:\quad \Phi = -\frac{(6.674{\times}10^{-11})(${p.M})}{${p.R0}}\; e^{-(${texNum(p.gam)})(${texNum(p.tS)})}\;(${C.toFixed(3)}) = ${texNum(Phi)}\ \mathrm{m^2/s^2},\qquad e^{-\gamma t} = ${texNum(p.D)}` +
+  /* with the correspondence toggle on, Phi = Phi0 [1 + D (C - 1)], not Phi0 D C: print the factor that was multiplied, and the units (SI: kg, m, so m^2/s^2) */
+  const fac = sz.corr ? String.raw`\bigl[1+(${texNum(p.D)})(${C.toFixed(3)}-1)\bigr]` : String.raw`e^{-(${texNum(p.gam)})(${texNum(p.tS)})}\;(${C.toFixed(3)})`;
+  return String.raw`(T_1,T_2) = (${q.T1.toFixed(2)},\,${q.T2.toFixed(2)})\,t_S:\quad \Phi = -\frac{(6.674{\times}10^{-11})(${p.M}\,\mathrm{kg})}{${p.R0}\,\mathrm{m}}\; ${fac} = ${texNum(Phi)}\ \mathrm{m^2/s^2},\qquad e^{-\gamma t} = ${texNum(p.D)}` +
     (sz.corr || sz.coupled ? String.raw`\quad \text{(${sz.coupled ? "coupled form" : "product form"}${sz.corr ? ", modulating a static well" : ""})}` : "");
 });
 liveEq("Two dilation models", () => {
@@ -13078,7 +13166,10 @@ liveEq("Lorenz system", () => {
   const r = +lo.el.rho.value + (lo.rAdj || 0), s = +lo.el.sig.value, b = +lo.el.beta.value;
   const x = lo.x, y = lo.y, z = lo.z, n = v => (v < 0 ? "(" + v.toFixed(2) + ")" : v.toFixed(2));
   const q = r > 1 ? Math.sqrt(b*(r - 1)) : 0;
-  return String.raw`\dot x = ${s.toFixed(1)}\,(${n(y)}-${n(x)}) = ${(s*(y - x)).toFixed(2)},\quad \dot y = ${n(x)}\,(${r.toFixed(2)}-${n(z)})-${n(y)} = ${(x*(r - z) - y).toFixed(2)},\quad \dot z = ${n(x)}\cdot${n(y)}-${b.toFixed(2)}\cdot${n(z)} = ${(x*y - b*z).toFixed(2)},\qquad x^{*} = \pm\sqrt{\beta(\rho-1)} = \pm${q.toFixed(2)},\quad \text{jumps} = ${lo.jumps}`;
+  /* lo.rk4 adds the harmonic drive to x-dot, so the row must too (it printed the undriven value with the drive slider up) */
+  const drv = +lo.el.drive.value > 0, F = drv ? lo.force() : 0;
+  const xd = String.raw`${s.toFixed(1)}\,(${n(y)}-${n(x)})` + (drv ? String.raw`+${n(F)}\,\text{(drive)}` : "") + String.raw` = ${(s*(y - x) + F).toFixed(2)}`;
+  return String.raw`\begin{gathered}\dot x = ${xd},\quad \dot y = ${n(x)}\,(${r.toFixed(2)}-${n(z)})-${n(y)} = ${(x*(r - z) - y).toFixed(2)}\\ \dot z = ${n(x)}\cdot${n(y)}-${b.toFixed(2)}\cdot${n(z)} = ${(x*y - b*z).toFixed(2)},\qquad x^{*} = \pm\sqrt{\beta(\rho-1)} = \pm${q.toFixed(2)},\quad \text{jumps} = ${lo.jumps}\end{gathered}`;
 });
 liveEq("Cubic-time field", () => {
   const w1 = +tv.el.w1.value, w2 = +tv.el.w2.value, w3 = +tv.el.w3.value;
@@ -13095,7 +13186,7 @@ liveEq("Chronowave field equation", () => {
   /* magnitudes are measured operator norms, so the two sides are sums of sizes; the residual is the
      field's own RMS imbalance and is not their difference */
   const T = tfe.T || tfe.terms();
-  return String.raw`\alpha_2 = ${T.a2.toFixed(2)},\ \alpha_3 = ${T.a3.toFixed(2)},\ \tfrac{\epsilon_2}{\sqrt2} = ${(T.e2/Math.SQRT2).toFixed(2)},\ \tfrac{\epsilon_3}{\sqrt2} = ${(T.e3/Math.SQRT2).toFixed(2)},\ \Big(1-\tfrac{R}{2GM}\Big)^{-1} = (1-${T.R.toFixed(2)})^{-1} = ${(1/(1 - 0.999*T.R)).toFixed(2)},\ \tau = ${T.tau.toFixed(2)} \;\Rightarrow\; \textstyle\sum|\text{geometry}| = ${T.LHS.toFixed(2)},\ \sum|\text{sources}| = ${T.RHS.toFixed(2)},\ \text{RMS residual} = ${Math.abs(T.res).toFixed(2)}`;
+  return String.raw`\alpha_2 = ${T.a2.toFixed(2)},\ \alpha_3 = ${T.a3.toFixed(2)},\ \tfrac{\epsilon_2}{\sqrt2} = ${(T.e2/Math.SQRT2).toFixed(2)},\ \tfrac{\epsilon_3}{\sqrt2} = ${(T.e3/Math.SQRT2).toFixed(2)},\ \Big(1-\tfrac{R}{2GM}\Big)^{-1} = (1-0.999\cdot ${T.R.toFixed(2)})^{-1} = ${(1/(1 - 0.999*T.R)).toFixed(2)},\ \tau = ${T.tau.toFixed(2)} \;\Rightarrow\; \textstyle\sum|\text{geometry}| = ${T.LHS.toFixed(2)},\ \sum|\text{sources}| = ${T.RHS.toFixed(2)},\ \text{RMS residual} = ${Math.abs(T.res).toFixed(2)}`;
 });
 document.addEventListener("input", refreshLive, {passive:true});
 document.addEventListener("click", e => {
@@ -13111,9 +13202,14 @@ const obs = {
     {id:"gamma",  label:"mesh \u03B3",        get(){ return mesh.physics().gamma; }},
     {id:"bf",     label:"mesh B_f",           get(){ return mesh.physics().Bf; }},
     {id:"D",      label:"scramble D(t)",      get(){ return sz.params().D; }},
-    {id:"res",    label:"TFE residual",       get(){ return tfe.res || 0; }},
-    {id:"lox",    label:"attractor x",        get(){ return lo.x; }},
-    {id:"jumps",  label:"orbital jumps",      get(){ return lo.jumps; }},
+    {id:"res",    label:"TFE residual",       get(){
+      /* Module X's canvas, its ledger and the Lorenz coupling refresh this cache only while they run, so the trace froze
+         when Module X was scrolled away; when nothing has in the last 100 ms the reading is taken here */
+      if (!(tfe.resAt > performance.now()/1000 - 0.1)) tfe.terms();
+      return tfe.res || 0;
+    }},
+    {id:"lox",    label:"attractor x",        get(){ lo.peek(); return lo.x; }},        /* peek: steps the attractor if no canvas has lately, silently */
+    {id:"jumps",  label:"orbital jumps",      get(){ lo.peek(); return lo.jumps; }},
     /* Ports added after the audits that produced these numbers. A telemetry
        board that shows the engine's oldest quantities and not its newest is a
        board that stopped tracking the instrument it is attached to. */
@@ -13121,7 +13217,7 @@ const obs = {
     {id:"geoid",  label:"geoid resid \u00B7 XI",   get(){ return bh.EP.resid()*1e15; }},   /* fs/s */
     {id:"ncount", label:"n\u1D9C from w \u00B7 IX",     get(){ return coW.ncFromW(coW.W_OBS); }},
     {id:"volT",   label:"log\u2081\u2080 V_T \u00B7 XIV",    get(){ return Math.log10(tv.V()); }},
-    {id:"lit",    label:"volume lit",         get(){ return tv.litPct || 0;       /* Module XIV's own number; the port used to recount on a coarser grid and a different clock, up to 17 points away */
+    {id:"lit",    label:"volume lit",         get(){ return tv.litRead();       /* Module XIV's own number when its canvas wrote one a moment ago, else the same 11^3 reading taken here; the port used to recount on a coarser grid and a different clock (up to 17 points away), and then read a cache that froze off screen */
     }},
     {id:"wp",     label:"spin \u03C9_p",      get(){ return +wsR.value/2 * (spRates[0] - spRates[1]); }},
     {id:"dg",     label:"GNSS \u0394\u03B3",  get(){ const b = gn.beta(); return Math.abs(Math.pow(1-b*b,-0.5) - Math.pow(1-b*b,-1/3)); }},
@@ -13185,15 +13281,26 @@ setInterval(() => {
 function pearson(a, b){
   const n = Math.min(a.length, b.length);
   if (n < 8) return 0;
-  let ma = 0, mb = 0;
-  for (let i = 0; i < n; i++){ ma += a[i]; mb += b[i]; }
+  let ma = 0, mb = 0, loA = Infinity, hiA = -Infinity, loB = Infinity, hiB = -Infinity;
+  for (let i = 0; i < n; i++){
+    const x = a[i], y = b[i];
+    ma += x; mb += y;
+    if (x < loA) loA = x; if (x > hiA) hiA = x;
+    if (y < loB) loB = y; if (y > hiB) hiB = y;
+  }
   ma /= n; mb /= n;
+  /* A constant trace has no correlation to report. Its computed mean is not bit-exact, so every deviation is the same
+     rounding error and the ratio comes out as exactly +1 or -1 (the Observatory opened on r = -1.000 with two flat
+     ports); testing da === 0 does not catch that. The test is the trace's range against its own size: a fixed 1e-12 floor,
+     as before, also zeroed genuinely small signals such as the geoid residual in fs/s. */
+  const flat = (lo, hi) => hi - lo <= 1e-12*Math.max(Math.abs(lo), Math.abs(hi));
+  if (flat(loA, hiA) || flat(loB, hiB)) return 0;
   let num = 0, da = 0, db = 0;
   for (let i = 0; i < n; i++){
     const xa = a[i] - ma, xb = b[i] - mb;
     num += xa*xb; da += xa*xa; db += xb*xb;
   }
-  if (da === 0 || db === 0) return 0;      /* a constant trace; the old absolute 1e-12 floor also zeroed small signals */
+  if (da === 0 || db === 0) return 0;
   return num/Math.sqrt(da*db);
 }
 /* signal chips */
@@ -13537,9 +13644,14 @@ function applyHash(){
     setR(tv.el.th, p.get("vt"));
     if (p.get("tu") === "1") document.getElementById("latTunB").click();
     if (p.get("ht")){ hl.th = +p.get("ht"); hl.ph = +(p.get("hp") || 0); hl.upd(); }
-    setR(tfe.el.A2, p.get("q2")); setR(tfe.el.A3, p.get("q3"));
-    setR(tfe.el.E2, p.get("qe")); setR(tfe.el.E3, p.get("qf"));
-    setR(tfe.el.R, p.get("qr")); setR(tfe.el.Tau, p.get("qt"));
+    /* the coupling fields are number inputs: unlike a range input they do not clamp what is written to .value, so a
+       permalink (or a typo in one) put -1, 1e9 or an empty string straight into the equation. Clamp to the field's own
+       min/max, and skip anything that is not a number. */
+    const setC = (el, v) => { const x = v == null ? NaN : parseFloat(v); if (Number.isFinite(x)) setR(el, Math.min(+el.max, Math.max(+el.min, x))); };
+    setC(tfe.el.A2, p.get("q2")); setC(tfe.el.A3, p.get("q3"));
+    setC(tfe.el.E2, p.get("qe")); setC(tfe.el.E3, p.get("qf"));
+    setC(tfe.el.R, p.get("qr")); setC(tfe.el.Tau, p.get("qt"));
+    if (["q2", "q3", "qe", "qf", "qr", "qt"].some(k => p.get(k) != null)) tfe.chipsOff();
   } catch(e){}
 }
 applyHash();

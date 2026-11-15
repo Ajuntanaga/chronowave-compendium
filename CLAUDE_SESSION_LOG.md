@@ -513,6 +513,90 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     index with no tier. Re-swept Module X: 0 flagged. The bug had been present since item 20/21 and no
     check run in this pass touched that button.
 
+33. **Independent review of the b91 pass (2026-11-15).** The author chose a targeted review. Kaggle sweeps of
+    the pre-pass page (e536de6) and b91 (251855e), normal and reduced motion, 17 sections and about 1,100
+    actions each, found no exception, console error, NaN, KaTeX error or frame error that the pre-pass page did
+    not also show. Seven reviewers (X scaling, X controls, IX, XII, VI, live rows, and one that was not given
+    this log) then drove headless Chromium against both pages and reported 57 findings (1 high, 19 medium, 37
+    low). I merged the duplicates and checked each finding against the code and the reviewers' repro scripts
+    myself; no second wave of agents was run. 39 findings (37 distinct defects: two were found twice) are fixed
+    or resolved in items 34–41 (41 also corrects two earlier items); 18 are the author's call and are listed after
+    "Left for the author". The reports and repro scripts are on the author's machine under
+    `~/.cache/chronowave-review/pkg/` (TRIAGE.md, reports/), not in this repository. This replaces the "paused"
+    notes in item 29b and in the README.
+34. **XVI Observatory.** `pearson()` returned ±1 for a constant trace (float noise over a flat series), so the
+    Observatory opened on r = −1.000; a flat trace (range ≤ 1e-12 of its size) now gives 0. The TFE-residual and
+    volume-lit ports read caches that refresh only while Module X or XIV is on screen, so both traces froze
+    when those canvases were scrolled away; each port now refreshes its own cache (`tfe.resAt`, `tv.litRead`,
+    a 150 ms window). The attractor-x and jump-count ports froze the same way in the pre-pass page too (the pass
+    had only moved the cache); with XII off screen they now advance the attractor silently through `lo.peek()`
+    (no jump tick, at most one step per 100 ms).
+35. **X.** (a) Blow-up test: a field that ran to Infinity printed "Infinity", a NaN field was called marginal,
+    and "both runs ran away" appeared when only one did. `tfe.blow` now marks the run non-finite with a reason,
+    the spectra ignore non-finite samples, and the readouts say "stopped" or "ill-posed". The reviewer's fuzz
+    (seed 12345; 42 bad of 917 settings) was re-run on 527 settings: none bad. (b) Scale line (`tfe.scaleNow`):
+    c²(h) = 3.2 + 2.2α₂h + 2.1α₃h² is solved for every sign case and the line prints the interval where the
+    equation stays hyperbolic (it printed "h > --8.73" and was wrong for α₂ < 0 or α₃ < 0). c² is positive for
+    every h exactly when α₂² < 5.55 α₃ or α₂ = α₃ = 0; the page said "exactly when" without the second case.
+    (c) The page said the conserved energy scales as λ¹. Derived: E = ∫[½(∂ₓ⁻¹∂ₜh)² + W(h)]dx (W′ = P) scales
+    as λ⁻¹ on the zoom h(λx, λt), as the Navier–Stokes energy does, so the conclusion (same position as
+    Navier–Stokes) stands and the printed exponent was the length-scale reading. The first-derivative energy
+    does grow as λ¹ but is not conserved once c² depends on h. Page text and Manual corrected; the SCALE
+    table is right on the zoom h_λ = λᵃ h(λx, λt), and that map is now written out. (d) Permalinks: a link could
+    set a coupling to 1e9 or NaN; `applyHash` now clamps to each field's range and skips non-numbers.
+    (e) The regime chips stayed lit over hand-set couplings after a mixer fader drag, a label mute, a
+    double-click reset, the Module XI hand-off, a permalink load and Auto-balance; each now calls
+    `tfe.chipsOff()`. Auto-balance writes two decimals into the typed fields. (f) The cascade sparkline is
+    skipped in tier 2 (it was drawn over the history panel); the operator column's opacity (a duplicate style
+    attribute) applies.
+36. **Live rows.** Lorenz: the row shows the drive force +F that rk4 adds to ẋ, split over two lines (it
+    overflowed). Combined potential: with the correspondence toggle on, the row multiplies out (the
+    1 + D(C−1) form, kg/m units). X: the row printed (1 − R)⁻¹ while the value uses 0.999·R; it now prints
+    (1 − 0.999·R)⁻¹.
+37. **XII Lyapunov readout, and a correction of item 15.** Item 15 said the verdict "tests the ±15% it
+    states". A single release does not stay within ±15% of 0.9056: over 300 simulated canonical releases (a
+    node replica of the integrator) the finite-time estimate lies within ±15% 53% of the time at 8 sim-s, 73%
+    at 12 and 77% just before the twins saturate, and within ±25% 81%, 90% and 93%. In 90 of 200 releases the
+    separation also dips below d0/2 in the first seconds (contraction along the stable directions), which the
+    readout called "shrinking — no chaos". The estimate is now marked "settling" until 10 sim-s of window; the
+    verdict uses ±25% and says that about 1 release in 10 falls outside it (release again); "shrinking" waits
+    for 3 sim-s and the first seconds read "measuring…".
+38. **IX.** The header says "paper's ΔT" (it said "observed", but Boötes and Eridanus are model values); the
+    t³ tile shows n/a for SDSS Median and DES Largest (it showed another void's figures); the H₀ gauge spans
+    65.5–75.5 while the dynamic H₀ runs 37.8 → 106 over the α₃ slider, so a dot beyond either end is parked at
+    the end with ◂ or ▸ and the label stays inside the canvas; the cosmic-time field prints three decimals
+    (step 0.001, default 17.639); the hand-set-mapping sentence now states the Ω_m floor of 0.05 (the figure
+    stops changing above s ≈ 1.43) and r_H = 4440 Mpc.
+39. **VI (page and standalone), the XVII card, the X chip.** The GM label is two flex items (text, value)
+    where the superscript used to make it four and split the row. The log-β slider keeps `step="any"` (the presets and the orbit
+    solver need exact values) and a key handler gives the arrow keys their old 0.005 dex (Chrome moves a
+    step="any" range 1% of its span, 0.06 dex); the orbit feed and `gnlSend` pass the unrounded value, so the
+    velocity tile equals the orbit solver to three decimals. The XVII card said the original result was
+    "validated over 1,000 simulations" (so did the Manual); it now says it was claimed on 1,000 simulations and
+    has since been excluded by an independent measurement. The t² chip's title says the preset sits above the
+    line α₂² = 5.55 α₃, so the equation stays hyperbolic only while h > −1.45 (at α₂ = 1).
+40. **Manual.md.** The tier-3 cascade description (stale); the λ⁻¹ energy; the hyperbolicity interval and "or
+    α₂ = α₃ = 0"; the blow-up ratio range is 1.00–1.27 with marginal corners and the refinement numbers (it
+    said 1.00–1.06, which a scan does not reproduce); typed couplings are editable and clamped; the XVII card
+    line.
+41. **Corrections to earlier items.** Items 13 and 23: the Auto-balance run "α₂ 1.00 → 0.94, R 0.30 → 0.34 in
+    ~0.6 s" was only the start-up transient. Once settled, |res| is 0.12–0.21 and clicking Auto-balance there
+    reports "Balanced ✓" within one tick. Item 15: see item 37.
+42. **How the fixes were checked.** `regress.mjs` (kept with the review's tools) drives one headless Chromium on
+    the instrumented page and re-tests every fix above: 51 checks across load, Observatory ports with X, XII
+    and XIV scrolled away, the Lorenz, X and Combined-potential rows, the scale line against a brute-force scan
+    for ten (α₂, α₃) pairs, the chips after fader, mute, reset, hand-off and Auto-balance, the blow-up fuzz,
+    the Lyapunov readout contract, IX's labels and gauge (screenshots at 1280 and 375 px, label position read
+    from the draw calls), VI on the page and standalone, and a hostile permalink. The first run passed 47 of
+    51; the four failures were mistakes in the test (a wrong number offset in the scale-line parser, clicks
+    that landed while the page was still smooth-scrolling, and a Lyapunov expectation that ignored where a
+    release starts), and all 51 pass after those were corrected. A sweep on Kaggle (private script
+    kernels, Chrome 159; 17 sections, 1,127 actions and 559 controls) of the b91 page against the fixed page,
+    in normal and in reduced motion, showed no difference in flagged signals or controls: neither page threw on
+    load or had a frame error or a failed request, and what is flagged in both is the same two kinds of known
+    noise (a KaTeX strict-mode warning for the ♭ and ♯ signs in Module XIII's chips, 47–48 clicks per run, which
+    ones varies, and the word "undefined" in Module VII's prose).
+
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
 connection-index bookkeeping (pressure rung n uses index n+1, tension rung n uses n) and R used three ways
@@ -521,6 +605,26 @@ nothing), its "Drive shape" label tied to no control, and the unison stack; XI's
 acts once a fall runs (tooltips say so) and its k_kin of 0.004 is rounded up from the 0.0025–0.0033 Module VI
 measures; the IX void chips do not drive the radius and underdensity sliders; the X blow-up test is a
 numerical test on a 1+1D reduction, not a proof.
+
+**Left for the author from the 2026-11-15 review (found, not changed):** X — the tier-2 Einstein-tensor line
+still has mis-indexed Christoffels next to the corrected Ricci scalar (it compiles; it was already so), and the
+tier-2 branch of the canvas pointerdown handler is unreachable because the first branch returns for tier 2; the
+blow-up canvas titles collide at phone width and so do the new canvas captions below about 930 px (IX's
+pressure-curve legend is clipped on phones as well); a permalink with a bad `bm` index throws and drops every
+key after it; the ledger cards cannot be reached by keyboard. IX — at s = 0 and at small s the equality
+sentence says "every earlier epoch" although the present epoch is matter-dominated there. XII — the twin tag lags
+the head by one step at a jump (the twin head is in the wrong wing for one frame in about nine jump frames); the
+β slider's step of 0.0001 (item 6) leaves the arrow keys moving 0.0001 per press while the readout shows two
+decimals (step 0.01 with value 2.67 would fix it; the canonical check tolerates 0.05); the permalink saves the drive
+amplitude but not the drive shape (the stack interval). VI — the caption states outcomes as fixed facts that
+depend on the time of day and on the data generator; the symbol-case rule is never applied (σ renders as a
+capital Σ, β as a capital Β); the standalone keeps `max-width:74ch` on its closing note; the cross-frame row does
+not refresh after β moves while the lab is not animating, so its "invalid" flag does not appear; the GLONASS-K1
+chip says 3.96 km/s where the module's own GLONASS shell gives 3.953. VIII — the substituted alpha-decay
+numbers of the decay-clock row do not reproduce its result. Shared — `texText` handles only four characters.
+Suspected, not confirmed: the blow-up test ignores mutes and gains; its time step is fixed from the initial
+amplitude; the ledger-only 4 Hz stepping leaves a residual about 7% different from the engine's; the fold
+slider's 3% claim; side effects of `lo.keepAlive`.
 
 **Decided, not left:** the IX ISW predictor keeps its hand-set cosmology with the module's own figure shown
 beside it (author, 2026-11-11). Nothing further is pending there.
@@ -540,3 +644,5 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    their repositories on 2026-11-11 (item 29a); the other 15 modules had none then, and 14 of them got one
    on 2026-11-14 (item 29c). The tracked files of the folder (all but the git-ignored `.bak.html`) were
    pushed to one public repository on 2026-11-14 (item 29b).
+6. The 2026-11-15 review of that pass (items 33–42) is closed apart from the "Left for the author from the
+   2026-11-15 review" paragraph, which is likewise the author's call and not a to-do.
