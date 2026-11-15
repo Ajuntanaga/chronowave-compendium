@@ -10,6 +10,7 @@ Scripts that cut the single-file compendium page (`Chronowave_Temporal_Engine.ht
 | `split_build.js` | `split_build.js PAGE SECTION OUT.html [--stubs FILE] [--linkmap FILE] [--date YYYY-MM-DD]` builds one standalone page: the shared CSS, a small header, the section markup, the footer, and only the script statements that module needs. Names declared by other modules are not copied; they are listed, and a stubs file can supply small stand-ins. |
 | `split_test.js`, `split_test_locked.sh` | Drive headless Chromium over the DevTools protocol (node's built-in WebSocket, no packages): load a page, move every slider, select and checkbox, click every button, send pointer, wheel and key events to every canvas, and collect uncaught exceptions and console errors. The locked wrapper runs one browser at a time. |
 | `split_package.py` | Builds and tests every module and makes a local git repository for each one (nothing is pushed). |
+| `verify_modules.py` | Compares every built module page and its manual extract with the compendium page: styles, section markup, script lines and manual text. |
 | `stubs/` | Small stand-ins for the parts of other modules that five modules read (see the notes). |
 | `notes/` | The limitation notes that `split_package.py` copies into each module's README. |
 
@@ -23,6 +24,10 @@ node --expose-internals tools/split/split_build.js Chronowave_Temporal_Engine.ht
 bash tools/split/split_test_locked.sh out.html
 python3 -I tools/split/split_package.py --only ladder,mesh   # writes ./split-out/repos/<repo>/
 ```
+
+## On GitHub
+
+`.github/workflows/split-modules.yml` runs the same build, test and comparison on a GitHub-hosted runner: start it from the Actions tab (the optional input limits the module list) and read the result there. It needs no secrets. `CHROME_BIN` names the browser binary when the Playwright headless shell is not installed (a full Chrome is started with `--headless=new`), and `split_package.py` builds the fourteen buildable modules by default.
 
 ## What it does not do
 

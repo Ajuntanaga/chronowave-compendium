@@ -1,0 +1,74 @@
+name: split-modules
+
+# Rebuilds the per-module pages with tools/split and tests each one in headless Chrome on a GitHub-hosted runner,
+# so that this work does not have to run on the author's machine. Manual trigger only; it needs no secrets.
+on:
+  workflow_dispatch:
+    inputs:
+      only:
+        description: "Module keys to build, comma separated (empty means all fourteen)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  split:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Browser and tool versions
+        run: |
+          google-chrome --version
+          node --version
+          python3 --version
+
+      - name: Build, test and package the module pages
+        env:
+          ONLY: ${{ inputs.only }}
+          CHROME_BIN: /usr/bin/google-chrome
+          SPLIT_OUT: ${{ runner.temp }}/split
+          GIT_AUTHOR_NAME: ${{ github.actor }}
+          GIT_AUTHOR_EMAIL: ${{ github.actor }}@users.noreply.github.com
+          GIT_COMMITTER_NAME: ${{ github.actor }}
+          GIT_COMMITTER_EMAIL: ${{ github.actor }}@users.noreply.github.com
+        run: |
+          set -euo pipefail
+          if [ -n "$ONLY" ] && ! printf '%s' "$ONLY" | grep -Eq '^[a-z0-9]+(,[a-z0-9]+)*$'; then
+            echo "the module list must be lower-case keys separated by commas"; exit 1
+          fi
+          args=(--commit "$(git rev-parse --short HEAD)" --date "$(date -u +%F)")
+          if [ -n "$ONLY" ]; then args+=(--only "$ONLY"); fi
+          python3 -I tools/split/split_package.py "${args[@]}"
+
+      - name: Compare every module page with the compendium page
+        env:
+          SPLIT_OUT: ${{ runner.temp }}/split
+        run: |
+          set -euo pipefail
+          mkdir -p "$SPLIT_OUT/stubs" && cp tools/split/stubs/*.stubs.js "$SPLIT_OUT/stubs/"
+          python3 -I tools/split/verify_modules.py "$SPLIT_OUT/repos" Chronowave_Temporal_Engine.html Manual.md
+
+      - name: List the pages
+        env:
+          SPLIT_OUT: ${{ runner.temp }}/split
+        run: |
+          {
+            echo "### Module pages"
+            echo '```'
+            (cd "$SPLIT_OUT/repos" && sha256sum */Module_*.html | sed 's|/| |')
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: module-pages
+          path: ${{ runner.temp }}/split/repos/*/Module_*.html
+          retention-days: 30

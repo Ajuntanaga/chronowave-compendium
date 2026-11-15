@@ -444,29 +444,30 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     `Chronowave_Temporal_Engine.pre-2026-11-09.bak.html`) and is the restore point; `251855e` is the pass (rev
     b91) plus the manual, this log, the two standalone copies, the README and .gitignore; the commit that adds
     this entry is the third. It is public at the author's choice, so that GitHub Actions, which the author uses
-    to offload processing, is not held back by private-repository quotas. No license, tag, release or workflow:
-    a license is the author's decision, and a release on the public standalone repositories would make Zenodo
-    mint new DOIs. A repository for each of 14 of the 15 modules without one was made the same day (item 29c);
-    Modules VI and VIII keep their own, hand-made, public repositories. Before the push, five read-only
-    reviewers (secrets and personal data, links and prose, README accuracy, hygiene, a cold read) checked the
-    tree. A spend limit interrupted the first run and two of the five were re-run; none reported a blocker.
-    Their findings were fixed in two amends of the then-unpushed second commit, which took a link to the
-    original web conversation out of this log, corrected the count of modules without a standalone repository to
-    15 and reworded README sentences and one commit-message sentence that said more than the code or the checks
-    support. A final read-only gate over `251855e` (four reviewers, each non-note finding re-checked by a
-    skeptic) found no blocker and two should-fix wording findings: the README sentence on what the address
-    fragment covers, now corrected, and the first commit's message calling the page diff "the whole pass", which
-    stays as committed and which the README now says overstates it. A second check of the first version of this
-    commit (three reviewers, same method) found no blocker and six more should-fix wording findings, which are
-    corrected here. A third check of that corrected version (one reviewer) found no should-fix finding and ten
-    notes, most of which are applied in this final wording. Left to the author: the build stamp shows only once
-    Module VIII's wrapper is revealed (scripts on, default motion); the page was not changed for this, and
-    moving the stamp is the author's call. The independent regression review was started and then paused; no
-    reviewer has reported, so the pass has had no independent regression check, and the pre-push reviews above
-    read the files without running the page. Reader notes: Resume point step 2's "four open items" are all among
-    the six "Open rulings" cards that Module XVII now shows (three of the six came later), and those cards are
-    the author's rulings, not tasks; step 3 mentions a "revision trail" but this log has no such heading; paths
-    beginning with `~/`, `../` or `ro/` are on the author's machine.
+    to offload processing, is not held back by private-repository quotas. No license, tag or release, and no
+    workflow at that point (item 29d adds one): a license is the author's decision, and a release on the public
+    standalone repositories would make Zenodo mint new DOIs. A repository for each of 14 of the 15 modules
+    without one was made the same day (item 29c); Modules VI and VIII keep their own, hand-made, public
+    repositories. Before the push, five read-only reviewers (secrets and personal data, links and prose, README
+    accuracy, hygiene, a cold read) checked the tree. A spend limit interrupted the first run and two of the
+    five were re-run; none reported a blocker. Their findings were fixed in two amends of the then-unpushed
+    second commit, which took a link to the original web conversation out of this log, corrected the count of
+    modules without a standalone repository to 15 and reworded README sentences and one commit-message sentence
+    that said more than the code or the checks support. A final read-only gate over `251855e` (four reviewers,
+    each non-note finding re-checked by a skeptic) found no blocker and two should-fix wording findings: the
+    README sentence on what the address fragment covers, now corrected, and the first commit's message calling
+    the page diff "the whole pass", which stays as committed and which the README now says overstates it. A
+    second check of the first version of this commit (three reviewers, same method) found no blocker and six
+    more should-fix wording findings, which are corrected here. A third check of that corrected version (one
+    reviewer) found no should-fix finding and ten notes, most of which are applied in this final wording. Left
+    to the author: the build stamp shows only once Module VIII's wrapper is revealed (scripts on, default
+    motion); the page was not changed for this, and moving the stamp is the author's call. The independent
+    regression review was started and then paused; no reviewer has reported, so the pass has had no independent
+    regression check, and the pre-push reviews above read the files without running the page. Reader notes:
+    Resume point step 2's "four open items" are all among the six "Open rulings" cards that Module XVII now
+    shows (three of the six came later), and those cards are the author's rulings, not tasks; step 3 mentions a
+    "revision trail" but this log has no such heading; paths beginning with `~/`, `../` or `ro/` are on the
+    author's machine.
 29c. **Module repositories (2026-11-14, on "the compendium split into the separate modules and a separate repo
     for all together").** The page was cut into standalone pages with the scripts in `tools/split` (added in the
     fourth commit): 14 of the 15 modules without a repository of their own now have a public one, named
@@ -482,8 +483,19 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     text). These show that the pages load and run without errors, not that a module behaves exactly as in the
     full page. Found on the way and left to the author: Module VIII's drawing code for the "paper's Fig. 1" view
     uses a variable `w` that does not exist in that scope (a `ReferenceError` at page line 7305; the standalone
-    Module VIII has the same line). No license, tag, release or workflow was added to any repository, and the
-    two hand-made module repositories were not changed.
+    Module VIII has the same line). No license, tag, release or workflow was added to any module repository (the
+    compendium repository gained a workflow later, item 29d), and the two hand-made module repositories were not
+    changed.
+29d. **GitHub Actions workflow (2026-11-14, on "use GHA and kaggle as much as possible to offload
+    processing").** `.github/workflows/split-modules.yml` rebuilds the module pages with `tools/split` and tests
+    each one in headless Chrome on a GitHub-hosted runner, then compares every page with this page
+    (`tools/split/verify_modules.py`) and attaches the pages as an artifact. It runs only when started by hand,
+    needs no secrets and has read-only access to the repository. It exists so that this work does not have to
+    run on the author's machine, which has hard resets, no swap and a 512-process cap on the Claude app's
+    cgroup. The test scripts take the browser from `CHROME_BIN` when it is set, and `split_package.py` builds
+    the fourteen buildable modules by default. The result of each run is in the repository's Actions tab, not in
+    this log. Kaggle (its command-line tool is installed on the author's machine, without credentials) was not
+    used.
 30. **How this was checked.** The preview pane stops delivering animation frames when its window is
     backgrounded (timers keep running). The page was re-run with `requestAnimationFrame` replaced by a timer
     shim (written over the document from the browser console; nothing in the file) so every changed draw

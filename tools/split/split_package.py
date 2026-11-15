@@ -66,7 +66,7 @@ def manual_section(manual, roman, with_appendix):
 def main(argv):
     commit = argv[argv.index("--commit") + 1] if "--commit" in argv else "6cf22d4"
     date = argv[argv.index("--date") + 1] if "--date" in argv else "2026-11-14"
-    only = set(argv[argv.index("--only") + 1].split(",")) if "--only" in argv else set(MODULES)
+    only = set(argv[argv.index("--only") + 1].split(",")) if "--only" in argv else set(MODULES) - {"observatory"}   # the observatory reads every module and is not split
     do_test = "--no-test" not in argv
     os.makedirs(BASE + "/repos", exist_ok=True)
     linkmap = {k: "https://github.com/%s/%s" % (OWNER, v[2]) for k, v in MODULES.items()}
@@ -119,42 +119,29 @@ def main(argv):
         note_text = open(notes, encoding="utf-8").read().strip() if os.path.exists(notes) else ""
         stub_clause = ", and small stand-ins for the parts of other modules that this module reads (see the limits below)" if os.path.exists(stubs) else ""
         blank = res["blankCanvases"]
-        html_text = open(html_path, encoding="utf-8").read()
-        items = ["the page title and description", "a short header and footer line"]
-        if ('href="%s"' % mfile) in html_text:
-            items.append("the link to the manual")
-        if info.get("rewrittenLinks"):
-            items.append("links to other modules (now pointing at their repositories)")
-        if os.path.exists(stubs):
-            items.append("small stand-ins for the parts of other modules that this module reads (see the limits below)")
-        differs = "What differs is " + ", ".join(items[:-1]) + " and " + items[-1]
-        extra = (" The module's own heading on the page reads: \"%s\"." % info["h2"]) if info.get("h2") else ""
-        if key == "compendium":
-            extra += " (This is the module that the page titles \"The compendium\"; the whole compendium is the repository linked above.)"
-        xrepo = MODULES["compendium"][2]
         readme = (
             "# %(title)s — Module %(roman)s\n\n"
             "Standalone interactive extract of Module %(roman)s, \"%(title)s\", from the Chronowave Dynamics Temporal Engine: a single-file compendium of 17 interactive modules about the author's temporal framework. "
-            "The full compendium, its manual and its edit log are in [%(comb)s](https://github.com/%(owner)s/%(comb)s).%(extra)s\n\n"
+            "The full compendium, its manual and its edit log are in [%(comb)s](https://github.com/%(owner)s/%(comb)s).\n\n"
             "## Use it\n\n"
             "Download or clone this repository, then open [`%(fbase)s.html`](%(fbase)s.html) from disk in a current browser (GitHub only shows its source). "
             "There is no build step and nothing to install. Math (KaTeX 0.16.9) and fonts load from cdnjs and Google Fonts, so equations and typography need a connection.\n\n"
             "## Files\n\n"
             "| File | What it is |\n|---|---|\n"
             "| [`%(fbase)s.html`](%(fbase)s.html) | The module: one page with the shared styles, this module's section and the script statements it needs. |\n"
-            "| [`%(mfile)s`](%(mfile)s) | This module's part of the compendium's plain-text manual (extracted from rev b90 and hand-patched, so it may lag the page). |\n\n"
-            "The other two files are this README and a `.gitignore`.\n\n"
+            "| [`%(mfile)s`](%(mfile)s) | This module's part of the compendium's plain-text manual. |\n\n"
             "## Where it comes from\n\n"
-            "Made on %(date)s from rev b91 of the compendium page (commit `%(commit)s` of %(comb)s) by the scripts in the `tools/split` folder of that repository (added in later commits). "
-            "The section markup, the styles and the script statements are copied from the page without change. %(differs)s.\n\n"
+            "Made on %(date)s from rev b91 of the compendium page (commit `%(commit)s` of %(comb)s) by the scripts in that repository's `tools/split` folder. "
+            "The section markup, the styles and the script statements are copied from the page without change. What differs is the page title and description, a short header and footer line, "
+            "the link to the manual, links to other modules (now pointing at their repositories)%(stubclause)s.\n\n"
             "## Checks and limits\n\n"
             "- A scripted headless-Chromium test loaded the page, moved every slider, select and checkbox, clicked every button and sent pointer, wheel and key events to every canvas: "
-            "%(inter)d actions (slider moves, clicks, and pointer, wheel and key events), %(canv)d canvas%(canvpl)s%(blank)s, no uncaught exception and no console error. It is a smoke test: this extract was not compared with the original module for identical behaviour, "
+            "%(inter)d actions, %(canv)d canvas%(canvpl)s%(blank)s, no uncaught exception and no console error. It is a smoke test: this extract was not compared with the original module for identical behaviour, "
             "and nothing here has had an independent review.\n"
             "%(notes)s"
             "%(framework)s\n"
             "- No license: all rights are reserved by default, beyond viewing and forking on GitHub; a license is the author's decision.\n"
-        ) % dict(extra=extra, differs=differs, framework=("- The framework is the author's own and still in progress. This module is the page's own set of verdicts, open rulings and build ledger: they are the page's own statements, not an independent assessment." if key == "compendium" else "- The framework is the author's own and still in progress; Module XVII of the compendium (also a repository of its own, [%s](https://github.com/%s/%s)) carries the page's own verdicts and open rulings." % (xrepo, OWNER, xrepo)), title=title, roman=roman, comb=COMBINED, owner=OWNER, fbase=fbase, mfile=mfile, date=date, commit=commit, stubclause=stub_clause,
+        ) % dict(framework=("- The framework is the author's own and still in progress. This module is the page's own set of verdicts, open rulings and build ledger: they are the page's own statements, not an independent assessment." if key == "compendium" else "- The framework is the author's own and still in progress; Module XVII of the compendium carries the page's own verdicts and open rulings."), title=title, roman=roman, comb=COMBINED, owner=OWNER, fbase=fbase, mfile=mfile, date=date, commit=commit, stubclause=stub_clause,
                  inter=res["interactions"], canv=res["canvases"], canvpl="" if res["canvases"] == 1 else "es", blank=(" (%s drawn only on demand or left blank)" % ", ".join(blank)) if blank else "",
                  notes=("\n".join(("- " + l.lstrip("-* ").strip()) for l in note_text.splitlines() if l.strip() and not l.lstrip().startswith("Standalone extract") and "headless" not in l.lower()) + "\n") if note_text else "")
         open(d + "/README.md", "w", encoding="utf-8").write(readme)

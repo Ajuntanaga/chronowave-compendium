@@ -3,6 +3,7 @@
 // collects uncaught exceptions and console errors, probes canvases and equations, then moves every slider,
 // select and checkbox and clicks every button (except network fetches) and collects again.
 // Exit code 0 = no exception and no console error; 1 = something failed.
+// Browser: the Playwright headless shell under ~/.cache/ms-playwright, or the binary named by CHROME_BIN (a full Chrome is started with --headless=new).
 const { spawn } = require('child_process');
 const fs = require('fs'), os = require('os'), path = require('path');
 
@@ -24,7 +25,9 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 (async () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'splittest-'));
-  const chrome = spawn(findChrome(), ['--remote-debugging-port=0', '--user-data-dir=' + dir, '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--window-size=1280,900', 'about:blank'], { stdio: 'ignore' });
+  const bin = process.env.CHROME_BIN || findChrome();
+  const headlessFlag = /headless-shell/.test(bin) ? [] : ['--headless=new'];
+  const chrome = spawn(bin, [...headlessFlag, '--remote-debugging-port=0', '--user-data-dir=' + dir, '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--window-size=1280,900', 'about:blank'], { stdio: 'ignore' });
   let done = false;
   const cleanup = () => { if (done) return; done = true; try { chrome.kill('SIGKILL'); } catch (e) {} try { fs.rmSync(dir, { recursive: true, force: true }); } catch (e) {} };
   for (const sig of ['SIGINT', 'SIGTERM']) process.on(sig, () => { cleanup(); process.exit(130); });
