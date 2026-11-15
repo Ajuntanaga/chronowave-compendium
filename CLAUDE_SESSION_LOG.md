@@ -494,8 +494,8 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     run on the author's machine, which has hard resets, no swap and a 512-process cap on the Claude app's
     cgroup. The test scripts take the browser from `CHROME_BIN` when it is set, and `split_package.py` builds
     the fourteen buildable modules by default. The result of each run is in the repository's Actions tab, not in
-    this log. Kaggle (its command-line tool is installed on the author's machine, without credentials) was not
-    used.
+    this log. Kaggle (its command-line tool is installed and signed in on the author's machine) was not used:
+    nothing in this pass needed it.
 30. **How this was checked.** The preview pane stops delivering animation frames when its window is
     backgrounded (timers keep running). The page was re-run with `requestAnimationFrame` replaced by a timer
     shim (written over the document from the browser console; nothing in the file) so every changed draw
