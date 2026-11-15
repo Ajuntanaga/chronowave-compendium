@@ -91,8 +91,9 @@ def main(argv):
                     problems.append("%s in %s" % (name, f))
         log = subprocess.run(["git", "-C", d, "log", "--format=%B"], capture_output=True, text=True).stdout
         n = int(subprocess.run(["git", "-C", d, "rev-list", "--count", "HEAD"], capture_output=True, text=True).stdout.strip())
-        if n != 1 or log.count("Co-Authored-By: Claude Sonnet 5.5 <noreply@" + "anthropic.com>") != 1:
-            problems.append("commits %d, trailers %d" % (n, log.count("Co-Authored-By:")))
+        want_trailers = 1 if os.environ.get("SPLIT_TRAILER") else 0   # a build without SPLIT_TRAILER (for example the GitHub workflow) adds no trailer
+        if n != 1 or log.count("Co-Authored-By:") != want_trailers:
+            problems.append("commits %d, trailers %d (want %d)" % (n, log.count("Co-Authored-By:"), want_trailers))
         if subprocess.run(["git", "-C", d, "remote"], capture_output=True, text=True).stdout.strip():
             problems.append("has a remote")
         print("%-11s %-40s %s" % (key, meta["repo"], "ok" if not problems else "FAIL: " + "; ".join(problems)))
