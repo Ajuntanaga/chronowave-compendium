@@ -69,6 +69,10 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: module-pages
-          path: ${{ runner.temp }}/split/repos/*/Module_*.html
+          name: module-files
+          path: |
+            ${{ runner.temp }}/split/repos/_index.json
+            ${{ runner.temp }}/split/repos/*/Module_*.html
+            ${{ runner.temp }}/split/repos/*/Module_*_Manual.md
+            ${{ runner.temp }}/split/repos/*/README.md
           retention-days: 30

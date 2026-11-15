@@ -27,7 +27,7 @@ python3 -I tools/split/split_package.py --only ladder,mesh   # writes ./split-ou
 
 ## On GitHub
 
-`.github/workflows/split-modules.yml` runs the same build, test and comparison on a GitHub-hosted runner: start it from the Actions tab (the optional input limits the module list) and read the result there. It needs no secrets. `CHROME_BIN` names the browser binary when the Playwright headless shell is not installed (a full Chrome is started with `--headless=new`), and `split_package.py` builds the fourteen buildable modules by default. A run is green only if every selected module was packaged; a module with a missing stub or a failed test fails the run.
+`.github/workflows/split-modules.yml` runs the same build, test and comparison on a GitHub-hosted runner: start it from the Actions tab (the optional input limits the module list) and read the result there. It needs no secrets. `CHROME_BIN` names the browser binary when the Playwright headless shell is not installed (a full Chrome is started with `--headless=new`), and `split_package.py` builds the fourteen buildable modules by default. A run is green only if every selected module was packaged; a module with a missing stub or a failed test fails the run. The artifact `module-files` holds each packaged module's page, manual extract and README, so a repository can be updated from the runner's build.
 
 ## What it does not do
 
