@@ -25,7 +25,7 @@ const lat = {
   root(){ return +this.rootEl.value; },
   actives(){ return [...this.mask].sort((a, b) => a - b); }
 };
-/* STUB of lo (Module XII) for the standalone extract: the attractor's x coordinate and its keep-alive step, fixed at x = 0, so the "Lorenz drive" button only slows the phase animation to a quarter here (there is no attractor term). */
-const lo = { x: 0, keepAlive(){} };
+/* STUB of lo (Module XII) for the standalone extract: the attractor's x coordinate and its keep-alive and peek steps (peek is the silent step that the Observatory's ports take; nothing calls it in this page), fixed at x = 0, so the "Lorenz drive" button only slows the phase animation to a quarter here (there is no attractor term). */
+const lo = { x: 0, keepAlive(){}, peek(){} };
 /* STUB of sz (Module V) for the standalone extract: the scramble zone's damping factor D, fixed at 1 (no damping), so the "Scramble damping" button changes nothing here. */
 const sz = { params(){ return { D: 1 }; } };

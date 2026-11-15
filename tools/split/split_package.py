@@ -6,7 +6,9 @@ nothing is pushed): builds each page with split_build.js (with the link map and,
 stubs/), tests it with split_test_locked.sh (a page that does not pass is not packaged), cuts the module's section out
 of Manual.md, writes a README from the test numbers and the limitation notes in notes/, and makes one commit.
 Environment: SPLIT_OUT (output folder), SPLIT_OWNER (GitHub account for the links), SPLIT_TRAILER (optional commit
-trailer line). Prints names, sizes and counts only. Needs node with --expose-internals and a headless Chromium."""
+trailer line). Prints names, sizes and counts only. Exits 1 if any selected module was not packaged (a missing stub, a
+failed build, a failed test), so that a run is green only when every selected module has its repository.
+Needs node with --expose-internals and a headless Chromium."""
 import html
 import json
 import os
@@ -77,6 +79,7 @@ def main(argv):
     json.dump(linkmap, open(lm, "w"))
     manual = open(COMP + "/Manual.md", encoding="utf-8").read()
     index = {}
+    skipped = []   # selected modules that did not get a repository; any entry makes the run fail
     for key in MODULES:
         if key not in only:
             continue
@@ -96,18 +99,18 @@ def main(argv):
         try:
             info = json.loads(b.stdout.strip().splitlines()[-1])
         except Exception:
-            say("BUILD FAILED", key, b.stderr[:200]); continue
+            say("BUILD FAILED", key, b.stderr[:200]); skipped.append(key); continue
         if info["missingStubs"] or info.get("missingMembers"):
-            say("MISSING STUBS", key, info["missingStubs"], info.get("missingMembers")); continue
+            say("MISSING STUBS", key, info["missingStubs"], info.get("missingMembers")); skipped.append(key); continue
         res = {"pass": None, "canvases": 0, "interactions": 0, "blankCanvases": [], "problems": []}
         if do_test:
             t = run(["bash", T + "/split_test_locked.sh", html_path, "--json"], timeout=900)
             try:
                 res = json.loads(t.stdout.strip().splitlines()[-1])
             except Exception:
-                say("TEST DID NOT RUN", key, t.stdout[-200:], t.stderr[-200:]); continue
+                say("TEST DID NOT RUN", key, t.stdout[-200:], t.stderr[-200:]); skipped.append(key); continue
             if not res["pass"]:
-                say("TEST FAILED", key, [p["text"][:100] for p in res["problems"][:3]]); continue
+                say("TEST FAILED", key, [p["text"][:100] for p in res["problems"][:3]]); skipped.append(key); continue
         with_appendix = key == "compendium"
         mtxt = manual_section(manual, roman, with_appendix)
         mfile = "Module_%s_Manual.md" % roman
@@ -178,12 +181,15 @@ def main(argv):
                      "%s: standalone extract of Module %s (rev b91)\n\nBuilt from %s commit %s with tools/split (%s).\n" % (title, roman, COMBINED, commit, date) + (("\n" + TRAILER + "\n") if TRAILER else "")]):
             r = subprocess.run(["git", "-C", d] + args, capture_output=True, text=True, env=env)
             if r.returncode != 0:
-                say("GIT FAILED", key, args[0], r.stderr[:200]); break
+                say("GIT FAILED", key, args[0], r.stderr[:200]); skipped.append(key); break
         head = subprocess.run(["git", "-C", d, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
         index[key] = dict(roman=roman, title=title, repo=repo, file=fbase + ".html", manual=mfile, head=head, bytes=os.path.getsize(html_path),
                           interactions=res["interactions"], canvases=res["canvases"], stubs=os.path.exists(stubs))
         say("%-11s %-5s %-40s %7d B  head %s  tests: %d actions, %d canvases%s" % (key, roman, repo, os.path.getsize(html_path), head, res["interactions"], res["canvases"], "  [stubs]" if os.path.exists(stubs) else ""))
     json.dump(index, open(BASE + "/repos/_index.json", "w"), indent=1)
+    if skipped:
+        say("NOT PACKAGED (%d of %d selected): %s" % (len(skipped), len(only & set(MODULES)), ", ".join(skipped)))
+        return 1
     return 0
 
 
