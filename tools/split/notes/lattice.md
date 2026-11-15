@@ -1,3 +1,3 @@
-- This module is cut loose from three others: the "gamma_D to mesh" button still computes the velocity and shows its confirmation, but there is no wave mesh (Module II) or frame animation (Module I) to receive it, so nothing visible follows.
+- This module is cut loose from three others: the "γ_D → mesh" button still computes the velocity and shows its confirmation, but there is no wave mesh (Module II) or frame animation (Module I) to receive it, so nothing visible follows.
 - The collapse to a note and the "Walk leg" button, which walks the harmonic leg of Module XV, work on the lattice side only: no leg moves and no rung sounds (read from the code).
 - The lattice's own scale selection, collapse and register behaviour does not depend on those modules and is unchanged (read from the code).

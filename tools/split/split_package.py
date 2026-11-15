@@ -7,6 +7,7 @@ stubs/), tests it with split_test_locked.sh (a page that does not pass is not pa
 of Manual.md, writes a README from the test numbers and the limitation notes in notes/, and makes one commit.
 Environment: SPLIT_OUT (output folder), SPLIT_OWNER (GitHub account for the links), SPLIT_TRAILER (optional commit
 trailer line). Prints names, sizes and counts only. Needs node with --expose-internals and a headless Chromium."""
+import html
 import json
 import os
 import re
@@ -119,29 +120,55 @@ def main(argv):
         note_text = open(notes, encoding="utf-8").read().strip() if os.path.exists(notes) else ""
         stub_clause = ", and small stand-ins for the parts of other modules that this module reads (see the limits below)" if os.path.exists(stubs) else ""
         blank = res["blankCanvases"]
+        html_text = open(html_path, encoding="utf-8").read()
+        items = ["the page title and description", "a short header and footer line"]
+        if ('href="%s"' % mfile) in html_text:
+            items.append("the link to the manual")
+        if info.get("rewrittenLinks"):
+            items.append("links to other modules (now pointing at their repositories)")
+        if os.path.exists(stubs):
+            items.append("small stand-ins for the parts of other modules that this module reads (see the limits below)")
+        differs = "What differs is " + ", ".join(items[:-1]) + " and " + items[-1]
+        extra = (" The module's own heading on the page reads: \"%s\"." % html.unescape(info["h2"])) if info.get("h2") else ""
+        if key == "compendium":
+            extra += " (This is the module that the page titles \"The compendium\"; the whole compendium is the repository linked above.)"
+        xrepo = MODULES["compendium"][2]
+        ctl = res.get("controls", {})
+        did = []
+        if ctl.get("ranges", 0) or ctl.get("selects", 0):
+            did.append("moved every slider and select")
+        if ctl.get("buttons", 0):
+            did.append("clicked every button" if ctl["buttons"] > 1 else "clicked its one button")
+        if res["canvases"]:
+            did.append("sent pointer and wheel events to every canvas")
+        did.append("sent key events to the document")
+        absent = [n for n, v in (("sliders", ctl.get("ranges", 0)), ("selects", ctl.get("selects", 0)), ("canvases", res["canvases"])) if not v]
+        testline = ("A scripted headless-Chromium test loaded the page, " + ", ".join(did[:-1]) + (" and " if len(did) > 1 else "") + did[-1] +
+                    ": %d actions (the count includes 38 fixed key and window events), %d canvas%s%s, no uncaught exception and no console error." % (
+                        res["interactions"], res["canvases"], "" if res["canvases"] == 1 else "es", (" (%s drawn only on demand or left blank)" % ", ".join(blank)) if blank else "") +
+                    ((" The page has no " + ", ".join(absent[:-1]) + (" or " if len(absent) > 1 else "") + absent[-1] + ".") if absent else ""))
         readme = (
             "# %(title)s — Module %(roman)s\n\n"
             "Standalone interactive extract of Module %(roman)s, \"%(title)s\", from the Chronowave Dynamics Temporal Engine: a single-file compendium of 17 interactive modules about the author's temporal framework. "
-            "The full compendium, its manual and its edit log are in [%(comb)s](https://github.com/%(owner)s/%(comb)s).\n\n"
+            "The full compendium, its manual and its edit log are in [%(comb)s](https://github.com/%(owner)s/%(comb)s).%(extra)s\n\n"
             "## Use it\n\n"
             "Download or clone this repository, then open [`%(fbase)s.html`](%(fbase)s.html) from disk in a current browser (GitHub only shows its source). "
             "There is no build step and nothing to install. Math (KaTeX 0.16.9) and fonts load from cdnjs and Google Fonts, so equations and typography need a connection.\n\n"
             "## Files\n\n"
             "| File | What it is |\n|---|---|\n"
             "| [`%(fbase)s.html`](%(fbase)s.html) | The module: one page with the shared styles, this module's section and the script statements it needs. |\n"
-            "| [`%(mfile)s`](%(mfile)s) | This module's part of the compendium's plain-text manual. |\n\n"
+            "| [`%(mfile)s`](%(mfile)s) | This module's part of the compendium's plain-text manual (extracted from rev b90 and hand-patched, so it may lag the page). |\n\n"
+            "The other two files are this README and a `.gitignore`.\n\n"
             "## Where it comes from\n\n"
-            "Made on %(date)s from rev b91 of the compendium page (commit `%(commit)s` of %(comb)s) by the scripts in that repository's `tools/split` folder. "
-            "The section markup, the styles and the script statements are copied from the page without change. What differs is the page title and description, a short header and footer line, "
-            "the link to the manual, links to other modules (now pointing at their repositories)%(stubclause)s.\n\n"
+            "Made on %(date)s from rev b91 of the compendium page (commit `%(commit)s` of %(comb)s) by the scripts in the `tools/split` folder of that repository (added in later commits). "
+            "The section markup, the styles and the script statements are copied from the page without change. %(differs)s.\n\n"
             "## Checks and limits\n\n"
-            "- A scripted headless-Chromium test loaded the page, moved every slider, select and checkbox, clicked every button and sent pointer, wheel and key events to every canvas: "
-            "%(inter)d actions, %(canv)d canvas%(canvpl)s%(blank)s, no uncaught exception and no console error. It is a smoke test: this extract was not compared with the original module for identical behaviour, "
+            "- %(testline)s It is a smoke test: this extract was not compared with the original module for identical behaviour, "
             "and nothing here has had an independent review.\n"
             "%(notes)s"
             "%(framework)s\n"
             "- No license: all rights are reserved by default, beyond viewing and forking on GitHub; a license is the author's decision.\n"
-        ) % dict(framework=("- The framework is the author's own and still in progress. This module is the page's own set of verdicts, open rulings and build ledger: they are the page's own statements, not an independent assessment." if key == "compendium" else "- The framework is the author's own and still in progress; Module XVII of the compendium carries the page's own verdicts and open rulings."), title=title, roman=roman, comb=COMBINED, owner=OWNER, fbase=fbase, mfile=mfile, date=date, commit=commit, stubclause=stub_clause,
+        ) % dict(testline=testline, extra=extra, differs=differs, framework=("- The framework is the author's own and still in progress. This module is the page's own set of verdicts, open rulings and build ledger: they are the page's own statements, not an independent assessment." if key == "compendium" else "- The framework is the author's own and still in progress; Module XVII of the compendium (also a repository of its own, [%s](https://github.com/%s/%s)) carries the page's own verdicts and open rulings." % (xrepo, OWNER, xrepo)), title=title, roman=roman, comb=COMBINED, owner=OWNER, fbase=fbase, mfile=mfile, date=date, commit=commit, stubclause=stub_clause,
                  inter=res["interactions"], canv=res["canvases"], canvpl="" if res["canvases"] == 1 else "es", blank=(" (%s drawn only on demand or left blank)" % ", ".join(blank)) if blank else "",
                  notes=("\n".join(("- " + l.lstrip("-* ").strip()) for l in note_text.splitlines() if l.strip() and not l.lstrip().startswith("Standalone extract") and "headless" not in l.lower()) + "\n") if note_text else "")
         open(d + "/README.md", "w", encoding="utf-8").write(readme)
