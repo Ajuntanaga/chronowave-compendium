@@ -616,10 +616,10 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     any selected module was not packaged, so a run is green only if every module has its repository; `64f3951`
     makes the artifact (now `module-files`) carry each README and manual extract as well as the pages. The build
     stamp on the page still reads "rev b91 · module pass V–XVI": it is the author's counter and was not bumped.
-44. **The two MED findings of the fix-commit review, fixed in the working tree (2026-11-15; not committed, not
-    published).** Two fresh read-only agents reviewed `59ff42c` (`reports/fixcommit-review-{physics,code}.md` in
-    the review package). The physics it changed holds up, and two MED findings were left; both are now edited in
-    `Chronowave_Temporal_Engine.html` (9 insertions, 4 deletions). **XII:** the Lyapunov readout's "shrinking —
+44. **The two MED findings of the fix-commit review, fixed and published (2026-11-15).** Two fresh read-only
+    agents reviewed `59ff42c` (`reports/fixcommit-review-{physics,code}.md` in the review package, which lives
+    outside this repository). The physics it changed holds up, and two MED findings were left; both were fixed
+    in `a13eca4` (`Chronowave_Temporal_Engine.html`, 9 insertions, 4 deletions). **XII:** the Lyapunov readout's "shrinking —
     the twins converge (no chaos at these settings)" waited for 3 sim-s of window, but at the canonical σ = 10,
     ρ = 28, β = 8/3 a twin can still sit below d0/2 after that (4 % of releases after 3 s, 0.8 % after 5 s, none
     of 5,000 after 10 s), so the text now waits for `settled` (10 sim-s) like the estimate and reads "measuring…"
@@ -629,16 +629,18 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     not the one Module X shows. The elapsed time is now replayed in blocks of at most 0.05 s (two sub-steps per
     block, so the CFL margin is the one the check was made at; at most ten blocks per call, so of a gap longer
     than 0.5 s, a hidden tab, only the first 0.5 s), and at 60 and 120 Hz one block is taken, as before. Checked
-    in headless Chromium on the page's own code, before and after on the same releases (`tools/fix_med_check.mjs`,
-    `reports/fixmed-check.{json,log}`): the X field's pace (simulated seconds per real second) went from 0.415
+    in headless Chromium on the page's own code, before and after on the same releases (`fix_med_check.mjs`, results in
+    `fixmed-check.{json,log}`; both kept with the review package): the X field's pace (simulated seconds per real second) went from 0.415
     to 1.000 with Module X off screen and from 0.999 to 1.000 on screen; at the canonical XII settings, 300 paired
     releases (112 of them dip below d0/2 in both runs), the "no chaos" text showed after 3 sim-s in 13 (4.3 %)
     before and in 0 now, and λ appears in all 300; a non-chaotic ρ = 15 still gets the "shrinking" verdict in
     24 of 24, now first shown at a median of 10.0 s instead of 3.0 s. The 51-check `regress.mjs` passes 51 of 51
-    on the edited page, and the page's inline script parses after the last edit (a comment). **Not published:**
-    this repository and the module repositories still carry the behaviour of `59ff42c`; a rebuild by the
-    `split-modules` workflow shows which module repositories change (at least X and XII), and each push needs
-    the author's yes.
+    on the edited page, and the page's inline script parses after the last edit (a comment). **Published:** the `split-modules` workflow rebuilt all fourteen modules from `a13eca4` (the run was green and its
+    artifact lists all fourteen), and only two changed in content: Module X (`chronowave-temporal-field-equation`)
+    and Module XII (`chronowave-attractor`) each got a fourth commit, `7567afc` and `db45279`; the README's
+    provenance line moves with the build. I, II, III, IV, VII, XI, XIII and XV differ from a fresh build only in
+    the build date (the disclaimer line and the README's provenance line), and V, IX, XIV and XVII have no
+    content change, so all twelve stay as published. No tag or release.
 
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
@@ -689,6 +691,7 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    pushed to one public repository on 2026-11-14 (item 29b).
 6. The 2026-11-15 review of that pass (items 33–44) is closed apart from the "Left for the author from the
    2026-11-15 review" paragraph, which is likewise the author's call and not a to-do.
-7. Item 44's two edits (XII's "no chaos" gate, the X field's pacing) sit in this folder's working tree only,
-   tested but not committed, pushed or republished. Committing them, pushing, and rebuilding the module
-   repositories (at least X and XII) are the author's call: do none of it unasked.
+7. Item 44's two fixes (XII's "no chaos" gate, the X field's pacing) are committed (`a13eca4`), pushed and
+   republished: the Module X and Module XII repositories each have a fourth commit. Nothing is pending from the
+   2026-11-15 review; what remains is the author's call, not a to-do: the "Left for the author" paragraphs and the
+   six LOW findings of the fix-commit review, which were not changed and are listed in the review package.
