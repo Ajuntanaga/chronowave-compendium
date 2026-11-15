@@ -596,6 +596,26 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     load or had a frame error or a failed request, and what is flagged in both is the same two kinds of known
     noise (a KaTeX strict-mode warning for the ♭ and ♯ signs in Module XIII's chips, 47–48 clicks per run, which
     ones varies, and the word "undefined" in Module VII's prose).
+43. **Publishing the fixes (2026-11-15).** The fix commit went to this repository (`59ff42c`; no tag or
+    release), and the standalone Module VI repository got the same three page changes (`066d597`; its README
+    lists the slider fix with the earlier formatting fixes). The module repositories were rebuilt by the
+    `split-modules` workflow on a GitHub runner: 14 of 14 packaged, tested in Chrome and matched against this
+    page by `verify_modules.py`, then the six that changed once more from the final commit, whose artifact the
+    updates were made from. Six repositories carried changed text and got a third commit each: V (`68a03a7`), IX
+    (`8ba50f5`), X (`d44c149`, with its manual extract), XII (`0da1ec8`), XIV (`508a299`) and XVII (`ac06cdd`,
+    with its manual extract); their READMEs say "Made on 2026-11-15" and name the commit of the build, and the
+    test numbers in them are unchanged (84, 147, 115, 79, 86 and 39 actions). The other eight (I, II, III, IV,
+    VII, XI, XIII, XV) differ from a fresh build only in the date of the disclaimer line, so they stay as
+    published on 2026-11-14. A rebuild of the 2026-11-14 state from the earlier page reproduced every published
+    page, manual extract and `.gitignore` byte for byte, and every README except its test sentence (which needs
+    the browser run), so the difference in each update is the fixes above and nothing else. The first run of the
+    workflow on the fix commit was green although it had skipped Module XIV: the page's new `lo.peek` call needs
+    a member in XIV's stand-in for the attractor ("MISSING STUBS volume"), `split_package.py` printed that and
+    went on with exit code 0, `verify_modules.py` reads only the modules in `_index.json`, and the half-built
+    page was uploaded all the same. Fixed in `553973c`: the stand-in has `peek(){}` and the script exits 1 when
+    any selected module was not packaged, so a run is green only if every module has its repository; `64f3951`
+    makes the artifact (now `module-files`) carry each README and manual extract as well as the pages. The build
+    stamp on the page still reads "rev b91 · module pass V–XVI": it is the author's counter and was not bumped.
 
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
@@ -644,5 +664,5 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    their repositories on 2026-11-11 (item 29a); the other 15 modules had none then, and 14 of them got one
    on 2026-11-14 (item 29c). The tracked files of the folder (all but the git-ignored `.bak.html`) were
    pushed to one public repository on 2026-11-14 (item 29b).
-6. The 2026-11-15 review of that pass (items 33–42) is closed apart from the "Left for the author from the
+6. The 2026-11-15 review of that pass (items 33–43) is closed apart from the "Left for the author from the
    2026-11-15 review" paragraph, which is likewise the author's call and not a to-do.
