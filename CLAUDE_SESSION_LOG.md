@@ -642,6 +642,24 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     the build date (the disclaimer line and the README's provenance line), and V, IX, XIV and XVII have no
     content change, so all twelve stay as published. No tag or release.
 
+45. **Module II's field-view double-click at pixel ratios above 2, fixed and published (2026-11-24).** Found
+    during the 2026-11-15 pixel-ratio check and left report-only; fixed at the author's go-ahead to keep working.
+    The canvas backing store is capped at 2x (`fitCanvas`), but the double-click handler of the field view
+    (view D) divided the click offset by the raw `devicePixelRatio`, so wherever the ratio is above 2 (a retina
+    display zoomed to 150%, a 3x screen) a placed source landed at 2/ratio of the click's offset from the canvas
+    corner. The line was already in the pre-pass restore point `e536de6`. It now divides by the same capped
+    ratio (`fbeb5b8`, `Chronowave_Temporal_Engine.html`, 5 insertions, 2 deletions; no other use of the raw ratio
+    exists in the page or the two standalone pages). Checked in headless Chromium on the page's own code, before
+    and after, clicking on whole pixels (`dblclick_dpr_check.mjs`, results in `dblclick-dpr-check.{json,log}`,
+    kept with the review package): at ratios 1, 1.5, 2, 2.5, 3 and 4 on a desktop-size window and 2 and 3 on a
+    phone-size one, the source landed at 1, 1, 1, 0.80, 0.667 and 0.50 of the click offset before the fix (phone:
+    1 and 0.667) and at 1.00000 in every case after it; up to ratio 2 the two pages agree to the last digit. The
+    51-check `regress.mjs` passes 51 of 51. Chromium only; a touch screen was not tried, so whether a phone
+    delivers a double-click at all is not covered. **Published:** the `split-modules` workflow rebuilt all
+    fourteen modules from `fbeb5b8` (run green); only Module II changed in content, and its repository
+    (`chronowave-geodesic-time-mesh`) got a third commit, `6fb3def`. The other thirteen stay as published. No
+    tag or release.
+
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
 connection-index bookkeeping (pressure rung n uses index n+1, tension rung n uses n) and R used three ways
@@ -695,3 +713,5 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    republished: the Module X and Module XII repositories each have a fourth commit. Nothing is pending from the
    2026-11-15 review; what remains is the author's call, not a to-do: the "Left for the author" paragraphs and the
    six LOW findings of the fix-commit review, which were not changed and are listed in the review package.
+8. Item 45's fix (Module II double-click above pixel ratio 2) is committed (`fbeb5b8`), pushed and republished:
+   the Module II repository has a third commit. Nothing is pending from it.
