@@ -7312,6 +7312,51 @@ errCv.addEventListener("click", ev => {
     HY.el.T3.dispatchEvent(new Event("input"));
     return;
   }
+  if (hydView === 4) return;   /* the interference view is drawn by the canvas loop below; a click here has nothing to pick */
+  if (hydView === 3){
+    const B = HY.box3;
+    if (!B || sy < B.y - 10 || sy > B.y + B.h + 10) return;
+    const Zc = Math.round(1 + (sx - B.x)/Math.max(1, B.w)*91);
+    const zEl = document.getElementById("hdZ");
+    if (zEl){
+      zEl.value = String(Math.max(1, Math.min(92, Zc)));
+      zEl.dispatchEvent(new Event("input"));
+    }
+    return;
+  }
+  const padL = 56, padR = 28, iw = errCv.clientWidth - padL - padR;
+  let best = -1, bd = 1e9;
+  ERR.forEach((d, i) => {
+    const x = hydView === 0
+      ? padL + iw*(i/(ERR.length-1))
+      : padL + iw*(1 - (Math.log10(parseFloat(d.t3)) - (-13.5))/(5 - (-13.5)));
+    const dd = Math.abs(sx - x);
+    if (dd < bd){ bd = dd; best = i; }
+  });
+  hydSel = best;
+  const d = ERR[best];
+  document.getElementById("hydInfo").innerHTML =
+    d.name + " \u00B7 t\u2081=" + d.t1 + " t\u2082=" + d.t2 + " t\u2083=<b>" + d.t3 + "</b> \u00B7 " + d.v + "%";
+});
+animate(errCv, (ctx, w, h, t) => {
+  /* CLEAR FIRST, ANNOTATE LAST. Two defects lived in this ordering:
+     (1) the provenance footnote was painted here, BEFORE each view's own
+         clearRect wiped it \u2014 so it never appeared in any view that showed it;
+     (2) view 3 never cleared at all, so every frame overpainted the last into
+         aliased mush and stale text ghosted under each Z change.
+     One clear at the top; the note is drawn by footNote() at the end. */
+  ctx.clearRect(0, 0, w, h);
+  ctx.textAlign = "left";
+  const footNote = () => {
+    if (hydView >= 3) return;
+    ctx.textAlign = "left";
+    ctx.font = "9px 'IBM Plex Mono', monospace";
+    ctx.fillStyle = "rgba(232,110,204,.75)";
+    ctx.fillText(hydView === 2
+      ? "[ASSUMED] t\u2083 basin placement is by hand \u2014 the unfinished link"
+      : "[ASSUMED] values from the unfinished paper \u00B7 UNVERIFIED \u2014 the Two clocks \u00B7 Z view is the ground truth",
+      12, hydView === 2 ? h - 8 : 14);
+  };
   if (hydView === 4){
     /* THE PAPER'S FIG. 1, RUN LIVE \u2014 and the law it hides.
        Everything drawn here is computed from eq (26); nothing is fitted. */
@@ -7435,50 +7480,6 @@ errCv.addEventListener("click", ev => {
       Math.pow(V, -0.5).toExponential(3) + " s^\u2212\u00B3\u141F\u00B2. A wave packet would be another cure.");
     return;
   }
-  if (hydView === 3){
-    const B = HY.box3;
-    if (!B || sy < B.y - 10 || sy > B.y + B.h + 10) return;
-    const Zc = Math.round(1 + (sx - B.x)/Math.max(1, B.w)*91);
-    const zEl = document.getElementById("hdZ");
-    if (zEl){
-      zEl.value = String(Math.max(1, Math.min(92, Zc)));
-      zEl.dispatchEvent(new Event("input"));
-    }
-    return;
-  }
-  const padL = 56, padR = 28, iw = errCv.clientWidth - padL - padR;
-  let best = -1, bd = 1e9;
-  ERR.forEach((d, i) => {
-    const x = hydView === 0
-      ? padL + iw*(i/(ERR.length-1))
-      : padL + iw*(1 - (Math.log10(parseFloat(d.t3)) - (-13.5))/(5 - (-13.5)));
-    const dd = Math.abs(sx - x);
-    if (dd < bd){ bd = dd; best = i; }
-  });
-  hydSel = best;
-  const d = ERR[best];
-  document.getElementById("hydInfo").innerHTML =
-    d.name + " \u00B7 t\u2081=" + d.t1 + " t\u2082=" + d.t2 + " t\u2083=<b>" + d.t3 + "</b> \u00B7 " + d.v + "%";
-});
-animate(errCv, (ctx, w, h, t) => {
-  /* CLEAR FIRST, ANNOTATE LAST. Two defects lived in this ordering:
-     (1) the provenance footnote was painted here, BEFORE each view's own
-         clearRect wiped it \u2014 so it never appeared in any view that showed it;
-     (2) view 3 never cleared at all, so every frame overpainted the last into
-         aliased mush and stale text ghosted under each Z change.
-     One clear at the top; the note is drawn by footNote() at the end. */
-  ctx.clearRect(0, 0, w, h);
-  ctx.textAlign = "left";
-  const footNote = () => {
-    if (hydView >= 3) return;
-    ctx.textAlign = "left";
-    ctx.font = "9px 'IBM Plex Mono', monospace";
-    ctx.fillStyle = "rgba(232,110,204,.75)";
-    ctx.fillText(hydView === 2
-      ? "[ASSUMED] t\u2083 basin placement is by hand \u2014 the unfinished link"
-      : "[ASSUMED] values from the unfinished paper \u00B7 UNVERIFIED \u2014 the Two clocks \u00B7 Z view is the ground truth",
-      12, hydView === 2 ? h - 8 : 14);
-  };
   if (hydView === 3){
     /* ============ TWO CLOCKS \u00B7 Z ============
        Physics unchanged; the LAYOUT is rebuilt. It used to draw at hard-coded
