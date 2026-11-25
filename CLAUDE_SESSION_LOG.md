@@ -660,6 +660,19 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     (`chronowave-geodesic-time-mesh`) got a third commit, `6fb3def`. The other thirteen stay as published. No
     tag or release.
 
+46. **A second browser engine, and a sweep of the modules the pass touched (2026-11-24).** Until now only
+    Chromium had been used. Two in-page sweeps (`sweep_modules.mjs`, `sweep_canvas_events.mjs` in the review
+    package, which lives outside this repository) ran over Modules II, V, VI, VIII, IX, X, XI, XII, XIV and the
+    Observatory on `fbeb5b8`. The first sets every slider to its minimum, maximum and back and clicks every button, and
+    looks in the section's text for NaN, undefined, Infinity and [object, for uncaught exceptions and (phone
+    width) for elements past the viewport; it ran in Chromium at 390, 768 and 1280 px and in headless Firefox at
+    390 and 1280 px, and found nothing. The second fires click, double-click, right-click, wheel and a pointer drag
+    at five points of every canvas in every view a button offers; in Chromium and Firefox the only exception is Module
+    VIII's known `w` ReferenceError (the "paper's Fig. 1" view, the author's call), which also shows the sweep can
+    see such errors. Firefox additionally rejects `setPointerCapture` for the sweep's synthetic pointer id 1 on the XI/XII/XIV
+    canvases and the X tfe canvas; a real pointer carries a valid id, so this is an artifact of the sweep, not
+    counted. Nothing changed in the page. Safari/WebKit and touch input remain unchecked.
+
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
 connection-index bookkeeping (pressure rung n uses index n+1, tension rung n uses n) and R used three ways
