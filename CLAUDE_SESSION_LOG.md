@@ -483,7 +483,7 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     text). These show that the pages load and run without errors, not that a module behaves exactly as in the
     full page. Found on the way and left to the author: Module VIII's drawing code for the "paper's Fig. 1" view
     uses a variable `w` that does not exist in that scope (a `ReferenceError` at page line 7305; the standalone
-    Module VIII has the same line). No license, tag, release or workflow was added to any module repository (the
+    Module VIII has the same line; fixed 2026-11-25, item 47). No license, tag, release or workflow was added to any module repository (the
     compendium repository gained a workflow later, item 29d), and the two hand-made module repositories were not
     changed.
 29d. **GitHub Actions workflow (2026-11-14, on "use GHA and kaggle as much as possible to offload
@@ -673,6 +673,26 @@ Done so far (all in `Chronowave_Temporal_Engine.html`):
     canvases and the X tfe canvas; a real pointer carries a valid id, so this is an artifact of the sweep, not
     counted. Nothing changed in the page. Safari/WebKit and touch input remain unchecked.
 
+47. **Module VIII's "paper's Fig. 1" view drew nothing; the drawing code was in the wrong function (2026-11-25).**
+    On the author's "Yes, move it". Seen live in Brave first: with the "Interference · odd harmonics" view
+    selected the main canvas still showed the stage chart, and a real click on it threw `ReferenceError: w is not
+    defined`. The cause is not a stray variable: the whole Fig. 1 drawing (envelope and carrier from eq (26), the
+    odd-harmonic law, the involution check, the octave-reduction chain, the [FORCED]/[ASSUMED] normalization
+    lines; about 120 lines) sat inside the canvas's `click` handler, where `w` and `ctx` do not exist, so view 4
+    never reached a draw and the click handler threw instead. It was like this in the pre-pass restore point
+    `e536de6`, so the pass did not cause it. Fix: the block moved verbatim (same bytes) into the `animate(errCv, ...)`
+    draw function as its own `hydView === 4` branch, ahead of the Two clocks · Z branch, and the click handler
+    got `if (hydView === 4) return;` so a click there no longer falls through to the stage picker and rewrites the
+    readout. Same edit in standalone Module VIII (page commit `fccfcf7`). No text, number or colour was changed, and the manuals already
+    described this view as working. Checked: the page parses; in Brave (the author's browser) the view now draws
+    and a real click throws nothing; `regress.mjs` 51/51 (the J1 fuzz gate needs 200+ samples and the first run
+    got 81 on a loaded machine with 0 bad, so it was rerun with `--fuzz=150`: 275 samples, 0 bad); the canvas-event
+    sweep is now clean in every module, including Module VIII, which was its positive control for this error (so
+    that control no longer fires); the module sweep is clean at 390, 768 and 1280 px on the page and on the
+    standalone. Not checked: browsers other than Chromium/Brave after the change. Observation, not changed: at
+    the 575 px canvas width of a desktop layout several of the longer ledger lines end in an ellipsis (the
+    drawing's own text-fitting), so part of those sentences is not readable there.
+
 **Left for the author (found, not changed):** the IX header H(t) = ȧ/a + α₃/t³ adds a density to a rate and
 the XIV header V_spatial/(t₁×t₂) is never computed; X tier-2's
 connection-index bookkeeping (pressure rung n uses index n+1, tension rung n uses n) and R used three ways
@@ -728,3 +748,6 @@ beside it (author, 2026-11-11). Nothing further is pending there.
    six LOW findings of the fix-commit review, which were not changed and are listed in the review package.
 8. Item 45's fix (Module II double-click above pixel ratio 2) is committed (`fbeb5b8`), pushed and republished:
    the Module II repository has a third commit. Nothing is pending from it.
+9. Item 47's fix (the Module VIII Fig. 1 view drawn from the right function) is committed, pushed and
+   republished to the standalone Module VIII repository; no per-module repository carries Module VIII. Nothing is
+   pending from it.
